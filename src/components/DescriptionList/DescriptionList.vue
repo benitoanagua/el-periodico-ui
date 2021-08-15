@@ -16,7 +16,7 @@ import { reactive, computed } from "vue";
 import CsDescriptionItem from "./DescriptionItem.vue";
 
 export default {
-  name: "CsDescriptionListClass",
+  name: "CsDescriptionList",
   components: { CsDescriptionItem },
   props: {
     items: {

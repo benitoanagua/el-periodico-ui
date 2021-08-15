@@ -2,10 +2,9 @@
   <div :class="classes">
     <slot />
   </div>
-</template>-
+</template>
 
 <script>
-
 import { reactive, computed } from "vue";
 
 export default {
@@ -20,7 +19,7 @@ export default {
     props = reactive(props);
     return {
       classes: computed(() => ({
-        "container": true,
+        container: true,
         [`${props.backgroundColor}`]: true,
       })),
     };

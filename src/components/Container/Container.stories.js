@@ -1,7 +1,7 @@
 import CsContainer from "./Container.vue";
 
 export default {
-  title: "Layout/Container",
+  title: "Design System/Layout/Container",
   component: CsContainer,
 };
 
@@ -15,15 +15,15 @@ const Template = (args) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  backgroundColor: "bg-gray-100",
+  backgroundColor: "bg-primary-500",
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  backgroundColor: "bg-red-100",
+  backgroundColor: "bg-secondary-500",
 };
 
 export const Accent = Template.bind({});
 Accent.args = {
-  backgroundColor: "bg-blue-100",
+  backgroundColor: "bg-accent-500",
 };

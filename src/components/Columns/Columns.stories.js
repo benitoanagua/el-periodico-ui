@@ -7,58 +7,13 @@ export default {
 };
 
 const Data = [
-  { columns: [{ bg: "bg-red-light", text: "text-red-dark" }] },
-  {
-    columns: [
-      { bg: "bg-red-light", text: "text-red-dark" },
-      { bg: "bg-yellow-light", text: "text-yellow-dark" },
-    ],
-  },
-  {
-    columns: [
-      { bg: "bg-red-light", text: "text-red-dark" },
-      { bg: "bg-yellow-light", text: "text-yellow-dark" },
-      { bg: "bg-green-light", text: "text-green-dark" },
-    ],
-  },
-  {
-    columns: [
-      { bg: "bg-red-light", text: "text-red-dark" },
-      { bg: "bg-yellow-light", text: "text-yellow-dark" },
-      { bg: "bg-green-light", text: "text-green-dark" },
-      { bg: "bg-blue-light", text: "text-blue-dark" },
-    ],
-  },
-  {
-    columns: [
-      { bg: "bg-red-light", text: "text-red-dark" },
-      { bg: "bg-yellow-light", text: "text-yellow-dark" },
-      { bg: "bg-green-light", text: "text-green-dark" },
-      { bg: "bg-blue-light", text: "text-blue-dark" },
-      { bg: "bg-indigo-light", text: "text-indigo-dark" },
-    ],
-  },
-  {
-    columns: [
-      { bg: "bg-red-light", text: "text-red-dark" },
-      { bg: "bg-yellow-light", text: "text-yellow-dark" },
-      { bg: "bg-green-light", text: "text-green-dark" },
-      { bg: "bg-blue-light", text: "text-blue-dark" },
-      { bg: "bg-indigo-light", text: "text-indigo-dark" },
-      { bg: "bg-purple-light", text: "text-purple-dark" },
-    ],
-  },
-  {
-    columns: [
-      { bg: "bg-red-light", text: "text-red-dark" },
-      { bg: "bg-yellow-light", text: "text-yellow-dark" },
-      { bg: "bg-green-light", text: "text-green-dark" },
-      { bg: "bg-blue-light", text: "text-blue-dark" },
-      { bg: "bg-indigo-light", text: "text-indigo-dark" },
-      { bg: "bg-purple-light", text: "text-purple-dark" },
-      { bg: "bg-pink-light", text: "text-pink-dark" },
-    ],
-  },
+  { bg: "bg-red-light", text: "text-red-dark" },
+  { bg: "bg-yellow-light", text: "text-yellow-dark" },
+  { bg: "bg-green-light", text: "text-green-dark" },
+  { bg: "bg-blue-light", text: "text-blue-dark" },
+  { bg: "bg-indigo-light", text: "text-indigo-dark" },
+  { bg: "bg-purple-light", text: "text-purple-dark" },
+  { bg: "bg-pink-light", text: "text-pink-dark" },
 ];
 
 const Template = (args) => ({
@@ -68,16 +23,16 @@ const Template = (args) => ({
   },
   template: `
     <cs-columns
-      v-for="item in items"
+      v-for="parent in items.length"
       :space="space"
       :margin="margin"
     >
       <cs-column
-        v-for="(item, index) in item.columns"
-        :background="item.bg"
-        :text="item.text + ' text-center'"
+        v-for="child in parent"
+        :background="items[child - 1].bg"
+        :text="items[child - 1].text + ' text-center'"
       >
-        {{ index + 1 }}
+        {{ child }}
       </cs-column>
     </cs-columns>
   `,
@@ -85,6 +40,7 @@ const Template = (args) => ({
 
 export const CollapseGap = Template.bind({});
 CollapseGap.args = {
+  space: "space-x-0",
   margin: "py-1",
   items: Data,
 };

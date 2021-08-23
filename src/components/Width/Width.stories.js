@@ -1,20 +1,11 @@
 import CsColumns from "@/components/Columns/Columns.vue";
 import CsWidth from "@/components/Width/Width.vue";
+import { colors } from "@/helpers/Data";
 
 export default {
   title: "Design System/Layout/Width",
   component: { CsColumns, CsWidth },
 };
-
-const Data = [
-  { bg: "bg-red-light", text: "text-red-dark" },
-  { bg: "bg-yellow-light", text: "text-yellow-dark" },
-  { bg: "bg-green-light", text: "text-green-dark" },
-  { bg: "bg-blue-light", text: "text-blue-dark" },
-  { bg: "bg-indigo-light", text: "text-indigo-dark" },
-  { bg: "bg-purple-light", text: "text-purple-dark" },
-  { bg: "bg-pink-light", text: "text-pink-dark" },
-];
 
 const Template = (args) => ({
   components: { CsColumns, CsWidth },
@@ -53,7 +44,7 @@ Half.args = {
   margin: "py-1",
   space: "space-x-0",
   length: 2,
-  items: Data,
+  items: colors,
 };
 
 export const Thirds = Template.bind({});
@@ -61,7 +52,7 @@ Thirds.args = {
   margin: "py-1",
   space: "space-x-0",
   length: 3,
-  items: Data,
+  items: colors,
 };
 
 export const Quarter = Template.bind({});
@@ -69,7 +60,7 @@ Quarter.args = {
   margin: "py-1",
   space: "space-x-0",
   length: 4,
-  items: Data,
+  items: colors,
 };
 
 export const Fifth = Template.bind({});
@@ -77,7 +68,7 @@ Fifth.args = {
   margin: "py-1",
   space: "space-x-0",
   length: 5,
-  items: Data,
+  items: colors,
 };
 
 export const Sixth = Template.bind({});
@@ -85,7 +76,7 @@ Sixth.args = {
   margin: "py-1",
   space: "space-x-0",
   length: 6,
-  items: Data,
+  items: colors,
 };
 
 export const Seventh = Template.bind({});
@@ -93,5 +84,5 @@ Seventh.args = {
   margin: "py-1",
   space: "space-x-0",
   length: 7,
-  items: Data,
+  items: colors,
 };

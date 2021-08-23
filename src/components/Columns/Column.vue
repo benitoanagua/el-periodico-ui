@@ -10,6 +10,14 @@ import { reactive, computed } from "vue";
 export default {
   name: "CsColumn",
   props: {
+    width: {
+      type: String,
+      default: null,
+    },
+    height: {
+      type: String,
+      default: null,
+    },
     text: {
       type: String,
       default: null,
@@ -31,11 +39,13 @@ export default {
     props = reactive(props);
     return {
       columnClass: computed(() => ({
-        "flex-1": true,
-        [`${props.text}`]: true,
-        [`${props.background}`]: true,
-        [`${props.margin}`]: true,
-        [`${props.padding}`]: true,
+        "flex-1": props.width == null,
+        [`${props.width}`]: props.width != null,
+        [`${props.height}`]: props.height != null,
+        [`${props.text}`]: props.text != null,
+        [`${props.background}`]: props.background != null,
+        [`${props.margin}`]: props.margin != null,
+        [`${props.padding}`]: props.padding != null,
       })),
     };
   },

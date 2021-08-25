@@ -1,15 +1,14 @@
 import CsColumns from "@/components/Columns/Columns.vue";
-import CsColumn from "@/components/Columns/Column.vue";
 import CsButton from "@/components/Button/Button.vue";
 import { modifiers } from "@/helpers/Data";
 
 export default {
   title: "Design System/Layout/Button",
-  component: { CsColumns, CsColumn, CsButton },
+  component: { CsColumns, CsButton },
 };
 
 const Template = (args) => ({
-  components: { CsColumns, CsColumn, CsButton },
+  components: { CsColumns, CsButton },
   setup() {
     return { ...args };
   },

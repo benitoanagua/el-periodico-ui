@@ -6,10 +6,8 @@
 
 <script>
 import { reactive, computed } from "vue";
-import CsColumn from "./Column.vue";
 export default {
   name: "CsColumns",
-  components: { CsColumn },
   props: {
     horizontal: {
       type: String,

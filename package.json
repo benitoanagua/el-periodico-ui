@@ -9,6 +9,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "phosphor-vue": "^4.3.1",
     "vue": "^3.0.5"
   },
   "devDependencies": {

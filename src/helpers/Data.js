@@ -8,12 +8,12 @@ export const colors = [
   { bg: "bg-pink-light", text: "text-pink-dark" },
 ];
 
-export const heights = [
-  ["h-0", "h-px", "h-0.5", "h-1", "h-1.5", "h-2", "h-2.5"],
-  ["h-3", "h-3.5", "h-4", "h-5", "h-6", "h-7", "h-8"],
-  ["h-9", "h-10", "h-11", "h-12", "h-14", "h-16", "h-20"],
-  ["h-24", "h-28", "h-32", "h-36", "h-40", "h-44", "h-48"],
-  ["h-52", "h-56", "h-60", "h-64", "h-72", "h-80", "h-96"],
+export const scale = [
+  ["0", "px", "0.5", "1", "1.5", "2", "2.5"],
+  ["3", "3.5", "4", "5", "6", "7", "8"],
+  ["9", "10", "11", "12", "14", "16", "20"],
+  ["24", "28", "32", "36", "40", "44", "48"],
+  ["52", "56", "60", "64", "72", "80", "96"],
 ];
 
 export const modifiers = [
@@ -25,4 +25,34 @@ export const modifiers = [
   { style: "warning" },
   { style: "danger" },
   { style: "help" },
+];
+
+export const menu = [
+  { title: "Inicio", link: "#", active: true, submenu: [] },
+  { title: "Política", link: "#", active: false, submenu: [] },
+  {
+    title: "Local",
+    link: "#",
+    active: false,
+    submenu: [
+      { title: "SubItem 1", link: "#", active: false },
+      { title: "SubItem 2", link: "#", active: false },
+    ],
+  },
+  { title: "Seguridad", link: "#", active: false, submenu: [] },
+  { title: "Sociedad", link: "#", active: false, submenu: [] },
+  { title: "Economía", link: "#", active: false, submenu: [] },
+  { title: "Mundo", link: "#", active: false, submenu: [] },
+  {
+    title: "Deporte",
+    link: "#",
+    active: false,
+    submenu: [
+      { title: "SubItem 1", link: "#", active: false },
+      { title: "SubItem 2", link: "#", active: false },
+      { title: "SubItem 3", link: "#", active: false },
+    ],
+  },
+  { title: "Cultura", link: "#", active: false, submenu: [] },
+  { title: "Opinión", link: "#", active: false, submenu: [] },
 ];

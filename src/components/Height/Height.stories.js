@@ -1,6 +1,6 @@
 import CsColumns from "@/components/Columns/Columns.vue";
 import CsColumn from "@/components/Columns/Column.vue";
-import { colors, heights } from "@/helpers/Data";
+import { colors, scale } from "@/helpers/Data";
 
 export default {
   title: "Design System/Layout/Height",
@@ -23,12 +23,12 @@ const Template = (args) => ({
       <cs-column
         v-for="(child, index) in row"
         width="w-24"
-        :height="child"
+        :height="'h-' + child"
         :background="items[index].bg"
         :text="items[index].text"
       >
         <div class="h-full flex justify-center items-center">
-          {{ child }}
+          h-{{ child }}
         </div>
       </cs-column>
     </cs-columns>
@@ -41,7 +41,7 @@ ItemsStart.args = {
   vertical: "items-start",
   margin: "py-4",
   space: "space-x-4",
-  columns: heights,
+  columns: scale,
   items: colors,
 };
 
@@ -51,7 +51,7 @@ ItemsCenter.args = {
   vertical: "items-center",
   margin: "py-4",
   space: "space-x-4",
-  columns: heights,
+  columns: scale,
   items: colors,
 };
 
@@ -61,6 +61,6 @@ ItemsEnd.args = {
   vertical: "items-end",
   margin: "py-4",
   space: "space-x-4",
-  columns: heights,
+  columns: scale,
   items: colors,
 };

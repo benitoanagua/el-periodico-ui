@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <div :class="containerClass">
     <slot />
   </div>
 </template>
@@ -10,17 +10,33 @@ import { reactive, computed } from "vue";
 export default {
   name: "CsContainer",
   props: {
+    maxWidth: {
+      type: String,
+      default: null,
+    },
     backgroundColor: {
       type: String,
+      default: null,
+    },
+    margin: {
+      type: String,
+      default: null,
+    },
+    padding: {
+      type: String,
+      default: null,
     },
   },
 
-  setup(props, { emit }) {
+  setup(props) {
     props = reactive(props);
     return {
-      classes: computed(() => ({
-        container: true,
-        [`${props.backgroundColor}`]: true,
+      containerClass: computed(() => ({
+        "mx-auto": true,
+        [`${props.maxWidth}`]: props.maxWidth != null,
+        [`${props.backgroundColor}`]: props.backgroundColor != null,
+        [`${props.margin}`]: props.margin != null,
+        [`${props.padding}`]: props.padding != null,
       })),
     };
   },

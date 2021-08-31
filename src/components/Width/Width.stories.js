@@ -16,7 +16,7 @@ const Template = (args) => ({
     <cs-columns
       v-for="parent in (length - 1)"
       :space="space"
-      :margin="margin"
+      :padding="padding"
     >
       <cs-width
         v-for="child in (length - parent + 1)"
@@ -27,7 +27,7 @@ const Template = (args) => ({
         w-{{(length - parent + 1) == child ? parent : '1'}}/{{ length }}
       </cs-width>
     </cs-columns>
-    <cs-columns :space="space" :margin="margin">
+    <cs-columns :space="space" :padding="padding">
       <cs-width
         :background="items[0].bg"
         :text="items[0].text + ' text-center'"
@@ -41,7 +41,7 @@ const Template = (args) => ({
 
 export const Half = Template.bind({});
 Half.args = {
-  margin: "py-1",
+  padding: "py-1",
   space: "space-x-0",
   length: 2,
   items: colors,
@@ -49,7 +49,7 @@ Half.args = {
 
 export const Thirds = Template.bind({});
 Thirds.args = {
-  margin: "py-1",
+  padding: "py-1",
   space: "space-x-0",
   length: 3,
   items: colors,
@@ -57,7 +57,7 @@ Thirds.args = {
 
 export const Quarter = Template.bind({});
 Quarter.args = {
-  margin: "py-1",
+  padding: "py-1",
   space: "space-x-0",
   length: 4,
   items: colors,
@@ -65,7 +65,7 @@ Quarter.args = {
 
 export const Fifth = Template.bind({});
 Fifth.args = {
-  margin: "py-1",
+  padding: "py-1",
   space: "space-x-0",
   length: 5,
   items: colors,
@@ -73,7 +73,7 @@ Fifth.args = {
 
 export const Sixth = Template.bind({});
 Sixth.args = {
-  margin: "py-1",
+  padding: "py-1",
   space: "space-x-0",
   length: 6,
   items: colors,
@@ -81,7 +81,7 @@ Sixth.args = {
 
 export const Seventh = Template.bind({});
 Seventh.args = {
-  margin: "py-1",
+  padding: "py-1",
   space: "space-x-0",
   length: 7,
   items: colors,

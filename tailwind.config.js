@@ -14,9 +14,6 @@ module.exports = {
         "6/7": "85.7142857%",
       },
     },
-    container: {
-      center: true,
-    },
     colors: {
       transparent: "transparent",
       current: "currentColor",
@@ -130,6 +127,9 @@ module.exports = {
     extend: {
       display: ["group-hover"],
     },
+  },
+  corePlugins: {
+    container: false,
   },
   plugins: [],
 };

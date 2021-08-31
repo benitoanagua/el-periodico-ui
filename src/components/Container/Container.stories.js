@@ -1,29 +1,50 @@
+import CsSection from "@/components/Section/Section.vue";
 import CsContainer from "./Container.vue";
 
 export default {
   title: "Design System/Layout/Container",
-  component: CsContainer,
+  component: { CsSection, CsContainer },
 };
 
 const Template = (args) => ({
-  components: { CsContainer },
+  components: { CsSection, CsContainer },
   setup() {
-    return { args };
+    return { ...args };
   },
-  template: '<cs-container v-bind="args"><br></cs-container>',
+  template: `
+  <cs-section
+    backgroundColor="bg-neutral-50"
+  >
+    <cs-container
+      :maxWidth="maxWidth"
+      :backgroundColor="backgroundColor"
+    >
+      <br>
+    </cs-section>
+  </cs-container>
+  `,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  backgroundColor: "bg-primary-500",
+export const Small = Template.bind({});
+Small.args = {
+  maxWidth: "max-w-screen-sm",
+  backgroundColor: "bg-red-light",
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  backgroundColor: "bg-secondary-500",
+export const Medium = Template.bind({});
+Medium.args = {
+  maxWidth: "max-w-screen-md",
+  backgroundColor: "bg-yellow-light",
 };
 
-export const Accent = Template.bind({});
-Accent.args = {
-  backgroundColor: "bg-accent-500",
+export const Large = Template.bind({});
+Large.args = {
+  maxWidth: "max-w-screen-lg",
+  backgroundColor: "bg-green-light",
+};
+
+export const XLarge = Template.bind({});
+XLarge.args = {
+  maxWidth: "max-w-screen-xl",
+  backgroundColor: "bg-blue-light",
 };

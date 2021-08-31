@@ -1,5 +1,5 @@
 <template>
-  <div :class="widthClass">
+  <div :class="sectionclass">
     <slot />
   </div>
 </template>
@@ -8,17 +8,9 @@
 import { reactive, computed } from "vue";
 
 export default {
-  name: "CsWidth",
+  name: "CsSection",
   props: {
-    fraction: {
-      type: String,
-      default: null,
-    },
-    text: {
-      type: String,
-      default: null,
-    },
-    background: {
+    backgroundColor: {
       type: String,
       default: null,
     },
@@ -31,13 +23,13 @@ export default {
       default: null,
     },
   },
+
   setup(props) {
     props = reactive(props);
     return {
-      widthClass: computed(() => ({
-        [`${props.fraction}`]: props.fraction != null,
-        [`${props.text}`]: props.text != null,
-        [`${props.background}`]: props.background != null,
+      sectionclass: computed(() => ({
+        "w-full": true,
+        [`${props.backgroundColor}`]: props.backgroundColor != null,
         [`${props.margin}`]: props.margin != null,
         [`${props.padding}`]: props.padding != null,
       })),

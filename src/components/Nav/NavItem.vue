@@ -12,6 +12,14 @@ import { reactive, computed } from "vue";
 export default {
   name: "CsNavItem",
   props: {
+    margin: {
+      type: String,
+      default: null,
+    },
+    padding: {
+      type: String,
+      default: null,
+    },
     title: {
       type: String,
       default: null,
@@ -24,7 +32,11 @@ export default {
       type: Boolean,
       default: false,
     },
-    submenu: {
+    isParent: {
+      type: Boolean,
+      default: false,
+    },
+    isChild: {
       type: Boolean,
       default: false,
     },
@@ -33,12 +45,14 @@ export default {
     props = reactive(props);
     return {
       navItemClass: computed(() => ({
-        "px-2": true,
         "text-neutral-900 font-semibold": true,
-        "text-opacity-100": !props.active,
-        "hover:bg-black hover:bg-opacity-5": !props.active,
-        "text-opacity-50 bg-black bg-opacity-5": props.active,
-        "group inline-block relative": props.submenu,
+        [`${props.margin}`]: props.margin != null,
+        [`${props.padding}`]: props.padding != null,
+        "hover:bg-secondary-500": !props.active,
+        "bg-secondary-500": props.active,
+        "border-b-4 border-secondary-600": props.active,
+        "group inline-block relative": props.isParent,
+        "pl-3 pt-2 pb-2": props.isChild,
       })),
     };
   },

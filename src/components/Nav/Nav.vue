@@ -18,6 +18,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    submenuWidth: {
+      type: String,
+      default: null,
+    },
+    menuWidth: {
+      type: String,
+      default: null,
+    },
   },
   setup(props) {
     props = reactive(props);
@@ -26,10 +34,12 @@ export default {
         "inline-flex": true,
         "flex-row": props.inline,
         "flex-col": !props.inline,
-        "bg-primary-100 rounded shadow-lg": props.submenu,
-        // "divide-y divide-y-reverse divide-primary-500": props.submenu,
-        "w-40": props.submenu,
-        "-ml-2": props.submenu,
+        [`${props.menuWidth} divide-y divide-secondary-200`]: !props.inline,
+        "bg-secondary-50 shadow-xl": props.submenu,
+        [`${props.submenuWidth}`]: props.submenuWidth != null,
+        "-ml-3 mt-4": props.submenu,
+        "rounded overflow-hidden": props.submenu,
+        "divide-y divide-secondary-200": props.submenu,
         "group-hover:block absolute hidden": props.submenu,
       })),
     };

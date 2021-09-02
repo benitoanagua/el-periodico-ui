@@ -73,9 +73,9 @@ module.exports = {
         dark: "#991B1B",
       },
       yellow: {
-        light: "#FDE68A",
-        base: "#F59E0B",
-        dark: "#92400E",
+        light: "#FEF08A",
+        base: "#EAB308",
+        dark: "#854D0E",
       },
       green: {
         light: "#A7F3D0",
@@ -101,6 +101,11 @@ module.exports = {
         light: "#FBCFE8",
         base: "#EC4899",
         dark: "#9D174D",
+      },
+      logo: {
+        kaki: "#C9B473",
+        orange: "#FF8A00",
+        garnet: "#8F2208",
       },
     },
     fontFamily: {

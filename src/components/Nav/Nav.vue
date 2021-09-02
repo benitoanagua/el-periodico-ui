@@ -26,12 +26,19 @@ export default {
       type: String,
       default: null,
     },
+    breakpoint: {
+      type: String,
+      default: null,
+    },
   },
   setup(props) {
     props = reactive(props);
     return {
       navClass: computed(() => ({
-        "inline-flex": true,
+        // Mobile
+        hidden: true,
+        // Desktop
+        [`${props.breakpoint}:inline-flex`]: !props.submenu,
         "flex-row": props.inline,
         "flex-col": !props.inline,
         [`${props.menuWidth} divide-y divide-secondary-200`]: !props.inline,

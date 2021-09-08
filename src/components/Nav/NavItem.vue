@@ -43,14 +43,14 @@ export default {
       navItemClass: computed(() => ({
         "text-neutral-900 font-semibold": true,
         "bg-black bg-opacity-0": true,
-        [`${props.margin || ""}`]: true,
-        [`${props.padding || ""}`]: true,
+        [`${props.margin || "my-0"}`]: true,
+        [`${props.padding || "px-3 py-3"}`]: true,
         "cursor-pointer": !props.active,
         "hover:bg-opacity-5": !props.active,
         "bg-opacity-5 mix-blend-luminosity": props.active,
-        "border-l-2 border-black border-opacity-5": props.active,
-        [`${props.breakpoint}:border-b-2
-          ${props.breakpoint}:border-r-0`]: props.active,
+        // "border-l-2 border-black border-opacity-5": props.active,
+        // [`${props.breakpoint}:border-b-2
+        //   ${props.breakpoint}:border-l-0`]: props.active,
       })),
     };
   },

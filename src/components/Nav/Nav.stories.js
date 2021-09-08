@@ -35,8 +35,6 @@ const Template = (args) => ({
           <cs-nav-item
             v-for="item in items"
             :breakpoint="breakpoint"
-            padding="px-3 py-3"
-            margin="my-0"
             :title="item.title"
             :link="item.link"
             :active="item.active"

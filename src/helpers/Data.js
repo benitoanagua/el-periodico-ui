@@ -28,12 +28,12 @@ export const modifiers = [
 ];
 
 export const menu = [
-  { title: "Inicio", link: "#", active: true, submenu: [] },
+  { title: "Inicio", link: "#", active: false, submenu: [] },
   { title: "Política", link: "#", active: false, submenu: [] },
   {
     title: "Local",
     link: "#",
-    active: false,
+    active: true,
     submenu: [
       { title: "SubItem 1", link: "#", active: false },
       { title: "SubItem 2", link: "#", active: false },

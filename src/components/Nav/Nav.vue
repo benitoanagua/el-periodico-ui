@@ -14,6 +14,10 @@ export default {
       type: String,
       default: null,
     },
+    visible: {
+      type: Boolean,
+      default: false,
+    },
     breakpoint: {
       type: String,
       default: null,
@@ -27,6 +31,10 @@ export default {
     props = reactive(props);
     return {
       navClass: computed(() => ({
+        "-translate-x-full": !props.visible,
+        "translate-x-0": props.visible,
+        [`transform transition duration-500 ease-in-out ${props.breakpoint}:translate-x-0`]: true,
+
         "absolute top-0 left-0 bg-neutral-50 h-full shadow-2xl": true,
         [`${props.breakpoint}:relative
           ${props.breakpoint}:bg-transparent

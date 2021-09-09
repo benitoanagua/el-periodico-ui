@@ -71,21 +71,21 @@ const Template = (args) => ({
 
 export const Float = Template.bind({});
 Float.args = {
-  fullWidth: false,
+  fullWidth: null,
   spaceX: "space-x-2",
   spaceY: "space-y-2",
   inline: true,
   weight: "regular",
   backgroundColor: "bg-white",
-  padding: "p-0",
-  margin: "m-0",
+  padding: null,
+  margin: null,
 };
 
 export const FullWidth = Template.bind({});
 FullWidth.args = {
   fullWidth: true,
-  spaceX: "space-x-2",
-  spaceY: "space-y-2",
+  spaceX: null,
+  spaceY: null,
   inline: true,
   weight: "regular",
   backgroundColor: "bg-secondary-400",

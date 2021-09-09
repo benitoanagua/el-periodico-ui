@@ -31,6 +31,7 @@ export default {
     props = reactive(props);
     return {
       navClass: computed(() => ({
+        "min-w-min": true,
         "-translate-x-full": !props.visible,
         "translate-x-0": props.visible,
         [`transform transition duration-500 ease-in-out ${props.breakpoint}:translate-x-0`]: true,

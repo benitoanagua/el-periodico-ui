@@ -129,9 +129,7 @@ module.exports = {
     },
   },
   variants: {
-    extend: {
-      display: ["group-hover"],
-    },
+    extend: {},
   },
   corePlugins: {
     container: false,

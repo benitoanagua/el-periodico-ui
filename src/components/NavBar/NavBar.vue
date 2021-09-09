@@ -1,8 +1,9 @@
 <template>
   <cs-icon-nav
+    :class="breakpoint + ':hidden'"
+    backgroundColor="transparent"
     :inline="true"
     :fullWidth="true"
-    :breakpoint="breakpoint"
     padding="px-3 py-3"
   >
     <cs-icon @click="openOffCanvas">
@@ -11,30 +12,42 @@
     <cs-icon link="#">
       <cs-logo height="h-6" />
     </cs-icon>
-    <cs-icon link="#">
+    <cs-icon>
       <ph-magnifying-glass :size="24" />
     </cs-icon>
   </cs-icon-nav>
 
-  <cs-nav
-    :breakpoint="breakpoint"
-    offCanvasWidth="w-60"
-    :visible="displayOffCanvas"
-    :divide="true"
-  >
-    <cs-nav-item
-      :class="'text-right ' + breakpoint + ':hidden'"
-      @click="closeOffCanvas"
-      ><ph-x-square :size="24" class="inline-block"
-    /></cs-nav-item>
-    <cs-nav-item
-      v-for="item in model"
+  <div class="flex justify-between">
+    <div :class="'hidden ' + breakpoint + ':inline-flex items-center'">
+      <cs-logo height="h-6" />
+    </div>
+    <cs-nav
+      :class="
+        'border-r-0 border-black border-opacity-5 ' + breakpoint + ':border-r'
+      "
       :breakpoint="breakpoint"
-      :title="item.title"
-      :link="item.link"
-      :active="item.active"
-    />
-  </cs-nav>
+      offCanvasWidth="w-60"
+      :visible="displayOffCanvas"
+      :divide="true"
+    >
+      <cs-nav-item
+        :class="'text-right ' + breakpoint + ':hidden'"
+        @click="closeOffCanvas"
+        ><ph-x-square :size="24" class="inline-block"
+      /></cs-nav-item>
+
+      <cs-nav-item
+        v-for="(item, index) in model"
+        :breakpoint="breakpoint"
+        :title="item.title"
+        :link="item.link"
+        :active="item.active"
+      />
+    </cs-nav>
+    <div :class="'hidden ' + breakpoint + ':inline-flex items-center'">
+      <ph-magnifying-glass :size="24" />
+    </div>
+  </div>
 </template>
 
 <script>

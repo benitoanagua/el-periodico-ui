@@ -36,7 +36,7 @@ export default {
         "translate-x-0": props.visible,
         [`transform transition duration-500 ease-in-out ${props.breakpoint}:translate-x-0`]: true,
 
-        "absolute top-0 left-0 bg-neutral-50 h-full shadow-2xl": true,
+        "absolute top-0 left-0 bg-white h-full": true,
         [`${props.breakpoint}:relative
           ${props.breakpoint}:bg-transparent
           ${props.breakpoint}:shadow-none`]: true,

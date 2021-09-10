@@ -1,5 +1,5 @@
 import CsIconNav from "@/components/IconNav/IconNav.vue";
-import CsIcon from "@/components/IconNav/Icon.vue";
+import CsIconNavItem from "@/components/IconNav/IconNavItem.vue";
 import {
   PhFacebookLogo,
   PhTwitterLogo,
@@ -9,7 +9,7 @@ import {
 } from "phosphor-vue";
 
 export default {
-  title: "Design System/Layout/IconNav",
+  title: "Design System/Components/IconNav",
   argTypes: {
     weight: {
       options: ["thin", "light", "regular", "bold", "fill", "duotone"],
@@ -18,7 +18,7 @@ export default {
   },
   component: {
     CsIconNav,
-    CsIcon,
+    CsIconNavItem,
     PhFacebookLogo,
     PhTwitterLogo,
     PhYoutubeLogo,
@@ -30,7 +30,7 @@ export default {
 const Template = (args) => ({
   components: {
     CsIconNav,
-    CsIcon,
+    CsIconNavItem,
     PhFacebookLogo,
     PhTwitterLogo,
     PhYoutubeLogo,
@@ -50,21 +50,21 @@ const Template = (args) => ({
       :padding="padding"
       :margin="margin"
     >
-      <cs-icon link="#">
+      <cs-icon-nav-item link="#">
         <ph-facebook-logo :size="24" :weight="weight"/>
-      </cs-icon> 
-      <cs-icon link="#">
+      </cs-icon-nav-item> 
+      <cs-icon-nav-item link="#">
         <ph-twitter-logo :size="24" :weight="weight"/>
-      </cs-icon> 
-      <cs-icon link="#">
+      </cs-icon-nav-item> 
+      <cs-icon-nav-item link="#">
         <ph-youtube-logo :size="24" :weight="weight"/>
-      </cs-icon> 
-      <cs-icon link="#">
+      </cs-icon-nav-item> 
+      <cs-icon-nav-item link="#">
         <ph-instagram-logo :size="24" :weight="weight"/>
-      </cs-icon> 
-      <cs-icon link="#">
+      </cs-icon-nav-item> 
+      <cs-icon-nav-item link="#">
         <ph-whatsapp-logo :size="24" :weight="weight"/>
-      </cs-icon> 
+      </cs-icon-nav-item> 
     </cs-icon-nav>
   `,
 });

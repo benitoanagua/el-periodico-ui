@@ -3,7 +3,7 @@ import CsColumn from "@/components/Columns/Column.vue";
 import { colors } from "@/helpers/Data";
 
 export default {
-  title: "Design System/Layout/Columns",
+  title: "Design System/Components/Columns",
   component: { CsColumns, CsColumn },
 };
 

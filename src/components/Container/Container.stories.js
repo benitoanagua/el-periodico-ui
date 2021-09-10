@@ -2,7 +2,7 @@ import CsSection from "@/components/Section/Section.vue";
 import CsContainer from "./Container.vue";
 
 export default {
-  title: "Design System/Layout/Container",
+  title: "Design System/Components/Container",
   component: { CsSection, CsContainer },
 };
 

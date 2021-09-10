@@ -29,9 +29,9 @@ export default {
     return {
       sectionclass: computed(() => ({
         "w-full": true,
-        [`${props.backgroundColor}`]: props.backgroundColor != null,
-        [`${props.margin}`]: props.margin != null,
-        [`${props.padding}`]: props.padding != null,
+        [`${props.backgroundColor || "bg-transparent"}`]: true,
+        [`${props.margin || "m-0"}`]: true,
+        [`${props.padding || "p-0"}`]: true,
       })),
     };
   },

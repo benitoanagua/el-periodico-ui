@@ -12,7 +12,9 @@ export default {
   props: {
     style: {
       type: String,
-      default: null,
+      validator: function (value) {
+        return ["small", "medium", "large"].indexOf(value) !== -1;
+      },
     },
     text: {
       type: String,
@@ -20,33 +22,39 @@ export default {
     },
     size: {
       type: String,
-      default: null,
+      validator: function (value) {
+        return (
+          [
+            "default",
+            "primary",
+            "secondary",
+            "success",
+            "info",
+            "warning",
+            "danger",
+            "help",
+          ].indexOf(value) !== -1
+        );
+      },
     },
   },
   setup(props) {
     props = reactive(props);
     return {
       buttonClass: computed(() => ({
-        [`text-center ${props.text != null ? props.text : ""}`]: true,
+        [`text-center text-white ${props.text || "text-base"}`]: true,
         "bg-white text-neutral-900 border-neutral-500 hover:border-neutral-900 border":
-          props.style == "default",
-        "text-white bg-accent-500 hover:bg-accent-700":
-          props.style == "primary",
-        " text-white bg-neutral-700 hover:bg-neutral-900":
-          props.style == "secondary",
-        "text-neutral-900 bg-green-base hover:text-white hover:bg-green-dark":
-          props.style == "success",
-        "text-neutral-900 bg-blue-base hover:text-white hover:bg-blue-dark":
-          props.style == "info",
-        "text-neutral-900 bg-yellow-base hover:text-white hover:bg-yellow-dark":
-          props.style == "warning",
-        "text-neutral-900 bg-red-base hover:text-white hover:bg-red-dark":
-          props.style == "danger",
-        "text-neutral-900 bg-purple-base hover:text-white hover:bg-purple-dark":
-          props.style == "help",
-        "py-0.5 px-6": props.size == "small",
-        "py-1 px-6": props.size == "medium",
-        "py-2 px-6": props.size == "large",
+          props.style === "default",
+        "bg-accent-500 hover:bg-accent-700": props.style === "primary",
+        "bg-neutral-700 hover:bg-neutral-900": props.style === "secondary",
+        "bg-green-base hover: hover:bg-green-dark": props.style === "success",
+        "bg-blue-base hover:bg-blue-dark": props.style === "info",
+        "bg-yellow-base hover:bg-yellow-dark": props.style === "warning",
+        "bg-red-base hover:bg-red-dark": props.style === "danger",
+        "bg-purple-base hover:bg-purple-dark": props.style === "help",
+        "py-0.5 px-6": props.size === "small",
+        "py-1 px-6": props.size === "medium",
+        "py-2 px-6": props.size === "large",
       })),
     };
   },

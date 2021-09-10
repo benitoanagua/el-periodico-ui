@@ -33,10 +33,10 @@ export default {
     return {
       containerClass: computed(() => ({
         "mx-auto": true,
-        [`${props.maxWidth}`]: props.maxWidth != null,
-        [`${props.backgroundColor}`]: props.backgroundColor != null,
-        [`${props.margin}`]: props.margin != null,
-        [`${props.padding}`]: props.padding != null,
+        [`${props.maxWidth || "max-w-screen-md"}`]: true,
+        [`${props.backgroundColor || "bg-transparent"}`]: true,
+        [`${props.margin || "m-0"}`]: true,
+        [`${props.padding || "p-0"}`]: true,
       })),
     };
   },

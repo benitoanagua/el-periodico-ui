@@ -1,26 +1,30 @@
 <template>
-  <cs-icon-nav
-    :class="breakpoint + ':hidden'"
-    backgroundColor="transparent"
-    :inline="true"
-    :fullWidth="true"
-    padding="px-3 py-3"
-  >
-    <cs-icon @click="openOffCanvas">
-      <ph-list :size="24" />
-    </cs-icon>
-    <cs-icon link="#">
-      <cs-logo height="h-6" />
-    </cs-icon>
-    <cs-icon>
-      <ph-magnifying-glass :size="24" />
-    </cs-icon>
-  </cs-icon-nav>
-
   <div class="flex justify-between">
-    <div :class="'hidden ' + breakpoint + ':inline-flex items-center'">
-      <cs-logo height="h-6" />
+    <div
+      :class="
+        'inline-flex items-center ' +
+        breakpoint +
+        ':hidden ' +
+        breakpoint +
+        ':px-0 px-3 py-3'
+      "
+      @click="openOffCanvas"
+    >
+      <ph-list :size="24" />
     </div>
+
+    <div
+      :class="
+        'hidden ' +
+        breakpoint +
+        ':inline-flex items-center ' +
+        breakpoint +
+        ':px-0 px-3 py-3'
+      "
+    >
+      <ph-list :size="24" />
+    </div>
+
     <cs-nav
       :class="
         'border-r-0 border-black border-opacity-5 ' + breakpoint + ':border-r'
@@ -32,9 +36,13 @@
     >
       <cs-nav-item
         :class="'text-right ' + breakpoint + ':hidden'"
+        padding="p-0"
         @click="closeOffCanvas"
-        ><ph-x-square :size="24" class="inline-block"
-      /></cs-nav-item>
+      >
+        <cs-icon backgroundColor="bg-accent-500" padding="p-1" margin="m-1">
+          <ph-x :size="24" />
+        </cs-icon>
+      </cs-nav-item>
 
       <cs-nav-item
         v-for="(item, index) in model"
@@ -44,7 +52,20 @@
         :active="item.active"
       />
     </cs-nav>
-    <div :class="'hidden ' + breakpoint + ':inline-flex items-center'">
+
+    <div
+      :class="
+        'inline-flex items-center ' +
+        breakpoint +
+        ':hidden ' +
+        breakpoint +
+        ':px-0 px-3 py-3'
+      "
+    >
+      <cs-logo height="h-6" />
+    </div>
+
+    <div :class="'inline-flex items-center ' + breakpoint + ':px-0 px-3 py-3'">
       <ph-magnifying-glass :size="24" />
     </div>
   </div>
@@ -55,22 +76,20 @@ import { ref } from "vue";
 
 import CsNav from "@/components/Nav/Nav.vue";
 import CsNavItem from "@/components/Nav/NavItem.vue";
-import CsIconNav from "@/components/IconNav/IconNav.vue";
-import CsIcon from "@/components/IconNav/Icon.vue";
 import CsLogo from "@/components/Logo/Logo.vue";
-import { PhList, PhMagnifyingGlass, PhXSquare } from "phosphor-vue";
+import CsIcon from "@/components/Icon/Icon.vue";
+import { PhList, PhMagnifyingGlass, PhX } from "phosphor-vue";
 
 export default {
   name: "CsNavBar ",
   components: {
     CsNav,
     CsNavItem,
-    CsIconNav,
-    CsIcon,
     CsLogo,
+    CsIcon,
     PhList,
     PhMagnifyingGlass,
-    PhXSquare,
+    PhX,
   },
   props: {
     backgroundColor: {

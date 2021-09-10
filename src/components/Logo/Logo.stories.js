@@ -1,12 +1,12 @@
 import CsIconNav from "@/components/IconNav/IconNav.vue";
-import CsIcon from "@/components/IconNav/Icon.vue";
+import CsIconNavItem from "@/components/IconNav/IconNavItem.vue";
 import CsLogo from "@/components/Logo/Logo.vue";
 
 export default {
-  title: "Design System/Layout/Logo",
+  title: "Design System/Components/Logo",
   component: {
     CsIconNav,
-    CsIcon,
+    CsIconNavItem,
     CsLogo,
   },
 };
@@ -14,7 +14,7 @@ export default {
 const Template = (args) => ({
   components: {
     CsIconNav,
-    CsIcon,
+    CsIconNavItem,
     CsLogo,
   },
   setup() {
@@ -26,13 +26,13 @@ const Template = (args) => ({
       :padding="padding"
       :margin="margin"
     >
-      <cs-icon link="#">
+      <cs-icon-nav-item link="#">
         <cs-logo
           :fill="fill"
           :width="width"
           :height="height"
         />
-      </cs-icon> 
+      </cs-icon-nav-item> 
     </cs-icon-nav>
   `,
 });

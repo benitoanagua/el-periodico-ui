@@ -5,7 +5,7 @@ import CsNavItem from "@/components/Nav/NavItem.vue";
 import { menu } from "@/helpers/Data";
 
 export default {
-  title: "Design System/Layout/Nav",
+  title: "Design System/Components/Nav",
   component: {
     CsSection,
     CsContainer,

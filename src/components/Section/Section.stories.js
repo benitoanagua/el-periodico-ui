@@ -1,7 +1,7 @@
 import CsSection from "./Section.vue";
 
 export default {
-  title: "Design System/Layout/Section",
+  title: "Design System/Components/Section",
   component: { CsSection },
 };
 

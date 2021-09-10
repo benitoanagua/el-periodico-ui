@@ -1,8 +1,7 @@
 <template>
   <li :class="navItemClass">
-    <a v-if="!active" :href="link">{{ title }}</a>
-    <span v-else>{{ title }}</span>
-    <slot />
+    <a v-if="link !== null" :href="link">{{ title }}</a>
+    <slot v-else />
   </li>
 </template>
 
@@ -47,10 +46,7 @@ export default {
         [`${props.padding || "px-3 py-3"}`]: true,
         "cursor-pointer": !props.active,
         "hover:bg-opacity-5": !props.active,
-        "bg-opacity-5 mix-blend-luminosity": props.active,
-        // "border-l-2 border-black border-opacity-5": props.active,
-        // [`${props.breakpoint}:border-b-2
-        //   ${props.breakpoint}:border-l-0`]: props.active,
+        "bg-opacity-5": props.active,
       })),
     };
   },

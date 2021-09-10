@@ -3,7 +3,7 @@ import CsButton from "@/components/Button/Button.vue";
 import { modifiers } from "@/helpers/Data";
 
 export default {
-  title: "Design System/Layout/Button",
+  title: "Design System/Components/Button",
   component: { CsColumns, CsButton },
 };
 
@@ -13,7 +13,7 @@ const Template = (args) => ({
     return { ...args };
   },
   template: `
-    <cs-columns :space="space">
+    <cs-columns space="space-x-1">
         <cs-button
             v-for="item in items"
             :style="item.style"
@@ -28,7 +28,6 @@ const Template = (args) => ({
 
 export const Small = Template.bind({});
 Small.args = {
-  space: "space-x-1",
   text: "text-base capitalize",
   size: "small",
   items: modifiers,
@@ -36,7 +35,6 @@ Small.args = {
 
 export const Medium = Template.bind({});
 Medium.args = {
-  space: "space-x-1",
   text: "text-base capitalize",
   size: "medium",
   items: modifiers,
@@ -44,7 +42,6 @@ Medium.args = {
 
 export const Large = Template.bind({});
 Large.args = {
-  space: "space-x-1",
   text: "text-base capitalize",
   size: "large",
   items: modifiers,

@@ -1,20 +1,19 @@
 <template>
-  <div :class="widthClass">
+  <span :class="IconClass">
     <slot />
-  </div>
+  </span>
 </template>
 
 <script>
 import { reactive, computed } from "vue";
-
 export default {
-  name: "CsWidth",
+  name: "CsIcon",
   props: {
-    fraction: {
+    backgroundColor: {
       type: String,
       default: null,
     },
-    backgroundColor: {
+    borderRadius: {
       type: String,
       default: null,
     },
@@ -30,11 +29,12 @@ export default {
   setup(props) {
     props = reactive(props);
     return {
-      widthClass: computed(() => ({
-        [`${props.fraction || ""}`]: true,
-        [`${props.backgroundColor || ""}`]: true,
-        [`${props.margin || ""}`]: true,
-        [`${props.padding || ""}`]: true,
+      IconClass: computed(() => ({
+        "inline-flex text-white": true,
+        [`${props.backgroundColor || "bg-white"}`]: true,
+        [`${props.borderRadius || "rounded-none"}`]: true,
+        [`${props.margin || "m-0"}`]: true,
+        [`${props.padding || "p-0"}`]: true,
       })),
     };
   },

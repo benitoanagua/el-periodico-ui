@@ -1,5 +1,5 @@
 <template>
-  <li :class="iconClass">
+  <li :class="iconNavItemClass">
     <a v-if="link" :href="link"><slot /></a>
     <span v-else><slot /></span>
   </li>
@@ -9,7 +9,7 @@
 import { reactive, computed } from "vue";
 
 export default {
-  name: "CsIcon",
+  name: "CsIconNavItem",
   props: {
     link: {
       type: String,
@@ -19,7 +19,7 @@ export default {
   setup(props) {
     props = reactive(props);
     return {
-      iconClass: computed(() => ({
+      iconNavItemClass: computed(() => ({
         "text-neutral-900 hover:text-neutral-700": props.link != null,
       })),
     };

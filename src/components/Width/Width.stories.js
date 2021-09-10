@@ -3,7 +3,7 @@ import CsWidth from "@/components/Width/Width.vue";
 import { colors } from "@/helpers/Data";
 
 export default {
-  title: "Design System/Layout/Width",
+  title: "Design System/Components/Width",
   component: { CsColumns, CsWidth },
 };
 
@@ -20,20 +20,22 @@ const Template = (args) => ({
     >
       <cs-width
         v-for="child in (length - parent + 1)"
-        :background="items[child - 1].bg"
-        :text="items[child - 1].text + ' text-center'"
+        :backgroundColor="items[child - 1].bg"
         :fraction="'w-' + ((length - parent + 1) == child ? parent : '1') + '/'+ length"
       >
-        w-{{(length - parent + 1) == child ? parent : '1'}}/{{ length }}
+        <span :class="'flow-root '+ items[child - 1].text + ' text-center'">
+          w-{{(length - parent + 1) == child ? parent : '1'}}/{{ length }}
+        </span>
       </cs-width>
     </cs-columns>
     <cs-columns :space="space" :padding="padding">
       <cs-width
-        :background="items[0].bg"
-        :text="items[0].text + ' text-center'"
+        :backgroundColor="items[0].bg"
         fraction="w-full"
       >
+      <span :class="'flow-root '+ items[0].text + ' text-center'">
         w-full
+      </span>
       </cs-width>
     </cs-columns>
   `,

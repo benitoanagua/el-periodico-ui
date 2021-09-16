@@ -20,7 +20,7 @@ export default {
     },
     breakpoint: {
       type: String,
-      default: null,
+      default: "md",
     },
     divide: {
       type: Boolean,

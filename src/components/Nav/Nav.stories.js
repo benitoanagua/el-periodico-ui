@@ -31,6 +31,7 @@ const Template = (args) => ({
           :breakpoint="breakpoint"
           :offCanvasWidth="offCanvasWidth"
           :divide="divide"
+          :visible="visible"
           >
           <cs-nav-item
             v-for="item in items"
@@ -52,5 +53,6 @@ Default.args = {
   breakpoint: "lg",
   offCanvasWidth: "w-60",
   divide: true,
+  visible: false,
   items: menu,
 };

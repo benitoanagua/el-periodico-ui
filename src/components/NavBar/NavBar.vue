@@ -98,7 +98,7 @@ export default {
     },
     breakpoint: {
       type: String,
-      default: null,
+      default: "md",
     },
     model: {
       type: Object,

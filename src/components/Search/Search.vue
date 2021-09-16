@@ -1,24 +1,21 @@
 <template>
-  <div class="">
-    <div
-      :class="'h-12 inline-flex items-center ' + breakpoint + ':px-0 px-3 py-3'"
-    >
-      <ph-magnifying-glass
-        class="cursor-pointer"
-        :size="24"
-        @click="openSearch"
-      />
-    </div>
+  <div :class="classIconSearch">
+    <ph-magnifying-glass
+      class="cursor-pointer"
+      :size="24"
+      @click="openSearch"
+    />
+  </div>
+  <div :class="classBoxSearch">
     <cs-search-form
       class="-mt-12"
       v-model:search="searchQuery"
-      :visible="displaySearch"
       @click="closeSearch"
     />
     <cs-search-result
+      class="py-1"
       space="space-y-2"
       divide="divide-y divide-neutral-100"
-      :visible="displaySearch"
     >
       <cs-search-result-item
         class="pt-2"
@@ -72,6 +69,7 @@ export default {
     };
     const closeSearch = () => {
       displaySearch.value = false;
+      searchQuery.value = "";
     };
 
     onMounted(() => {
@@ -87,6 +85,21 @@ export default {
         )
         .slice(0, props.limit);
     });
+
+    const classIconSearch = computed(() => ({
+      "h-12 inline-flex items-center": true,
+      [`${props.breakpoint}:px-0 px-3 py-3`]: true,
+    }));
+    const classBoxSearch = computed(() => ({
+      "bg-primary-50 border border-primary-100": true,
+      [`w-full ${props.breakpoint}:w-6/12`]: true,
+      "transform left-2/4 -translate-x-2/4": true,
+      "shadow-2xl": true,
+      hidden: !displaySearch.value,
+      absolute: displaySearch.value,
+      "mt-12 pt-16 pb-2 px-4": true,
+    }));
+
     return {
       posts,
       searchedPosts,
@@ -94,6 +107,8 @@ export default {
       displaySearch,
       openSearch,
       closeSearch,
+      classIconSearch,
+      classBoxSearch,
     };
   },
 };

@@ -29,7 +29,7 @@ const Template = (args) => ({
     </cs-section>
 
     <cs-section
-      class="sticky top-0 overflow-hidden"
+      class="sticky top-0"
       :backgroundColor="backgroundColor"
     >
       <cs-container

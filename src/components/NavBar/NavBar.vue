@@ -65,9 +65,7 @@
       <cs-logo height="h-6" />
     </div>
 
-    <div :class="'inline-flex items-center ' + breakpoint + ':px-0 px-3 py-3'">
-      <ph-magnifying-glass :size="24" />
-    </div>
+    <cs-search :breakpoint="breakpoint" :limit="5" />
   </div>
 </template>
 
@@ -76,6 +74,7 @@ import { ref } from "vue";
 
 import CsNav from "@/components/Nav/Nav.vue";
 import CsNavItem from "@/components/Nav/NavItem.vue";
+import CsSearch from "@/components/Search/Search.vue";
 import CsLogo from "@/components/Logo/Logo.vue";
 import CsIcon from "@/components/Icon/Icon.vue";
 import { PhList, PhMagnifyingGlass, PhX } from "phosphor-vue";
@@ -85,6 +84,7 @@ export default {
   components: {
     CsNav,
     CsNavItem,
+    CsSearch,
     CsLogo,
     CsIcon,
     PhList,

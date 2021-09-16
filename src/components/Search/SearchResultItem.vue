@@ -4,7 +4,7 @@
       <img :src="image" alt="" :class="classItemImage" />
     </div>
     <div>
-      <h5>{{ title }}</h5>
+      <h6>{{ title }}</h6>
       <span class="meta">{{ date }}</span>
     </div>
   </div>

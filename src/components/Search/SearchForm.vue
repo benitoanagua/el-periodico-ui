@@ -30,10 +30,6 @@ export default {
       type: String,
       default: null,
     },
-    visible: {
-      type: Boolean,
-      default: false,
-    },
   },
   emits: ["click", "update:search"],
   setup(props, { emit }) {
@@ -41,9 +37,6 @@ export default {
 
     const formClass = computed(() => ({
       "flex h-12 content-center": true,
-      "-translate-x-full": !props.visible,
-      "translate-x-0": props.visible,
-      "transform transition duration-500 ease-in-out": true,
     }));
     const inputClass = computed(() => ({
       "text-xl font-light": true,

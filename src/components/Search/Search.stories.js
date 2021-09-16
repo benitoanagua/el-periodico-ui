@@ -23,7 +23,10 @@ const Template = (args) => ({
   template: `
     <cs-section backgroundColor="bg-white">
       <cs-container maxWidth="max-w-screen-lg">
-        <cs-search :breakpoint="breakpoint"/>
+        <cs-search
+          :breakpoint="breakpoint"
+          :limit="limit"
+        />
       </cs-container>
     </cs-section>
   `,
@@ -31,6 +34,6 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  backgroundColor: "bg-neutral-100",
   breakpoint: "lg",
+  limit: 4,
 };

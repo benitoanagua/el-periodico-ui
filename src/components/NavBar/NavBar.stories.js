@@ -29,10 +29,12 @@ const Template = (args) => ({
     </cs-section>
 
     <cs-section
-      class="sticky top-0 left-0"
+      class="sticky top-0 overflow-hidden"
       :backgroundColor="backgroundColor"
     >
-      <cs-container maxWidth="max-w-screen-lg">
+      <cs-container
+        maxWidth="max-w-screen-lg"
+      >
         <cs-nav-bar
           :backgroundColor="backgroundColor"
           :breakpoint="breakpoint"

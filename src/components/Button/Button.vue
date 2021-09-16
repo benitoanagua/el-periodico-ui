@@ -13,16 +13,6 @@ export default {
     style: {
       type: String,
       validator: function (value) {
-        return ["small", "medium", "large"].indexOf(value) !== -1;
-      },
-    },
-    text: {
-      type: String,
-      default: null,
-    },
-    size: {
-      type: String,
-      validator: function (value) {
         return (
           [
             "default",
@@ -36,6 +26,16 @@ export default {
           ].indexOf(value) !== -1
         );
       },
+    },
+    size: {
+      type: String,
+      validator: function (value) {
+        return ["small", "medium", "large"].indexOf(value) !== -1;
+      },
+    },
+    text: {
+      type: String,
+      default: null,
     },
   },
   setup(props) {

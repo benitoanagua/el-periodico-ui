@@ -13,7 +13,7 @@ export default {
   props: {
     breakpoint: {
       type: String,
-      default: null,
+      default: "md",
     },
     margin: {
       type: String,

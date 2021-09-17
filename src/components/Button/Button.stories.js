@@ -16,9 +16,9 @@ const Template = (args) => ({
     <cs-columns space="space-x-1">
         <cs-button
             v-for="item in items"
-            :style="item.style"
-            :text="text"
+            :theme="item.style"
             :size="size"
+            :class="custom"
         >
             {{ item.style }}
         </cs-button>
@@ -28,21 +28,21 @@ const Template = (args) => ({
 
 export const Small = Template.bind({});
 Small.args = {
-  text: "text-base capitalize",
   size: "small",
+  custom: "uppercase",
   items: modifiers,
 };
 
 export const Medium = Template.bind({});
 Medium.args = {
-  text: "text-base capitalize",
   size: "medium",
+  custom: "uppercase",
   items: modifiers,
 };
 
 export const Large = Template.bind({});
 Large.args = {
-  text: "text-base capitalize",
   size: "large",
+  custom: "uppercase",
   items: modifiers,
 };

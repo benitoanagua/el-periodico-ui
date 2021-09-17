@@ -129,7 +129,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      ringColor: ["hover", "active"],
+    },
   },
   corePlugins: {
     container: false,

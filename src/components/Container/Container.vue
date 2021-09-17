@@ -18,6 +18,10 @@ export default {
       type: String,
       default: null,
     },
+    breakpoint: {
+      type: String,
+      default: "md",
+    },
     margin: {
       type: String,
       default: null,
@@ -36,7 +40,7 @@ export default {
         [`${props.maxWidth || "max-w-screen-md"}`]: true,
         [`${props.backgroundColor || "bg-transparent"}`]: true,
         [`${props.margin || "m-0"}`]: true,
-        [`${props.padding || "p-0"}`]: true,
+        [`${props.breakpoint}:${props.padding || "p-0"} px-3`]: true,
       })),
     };
   },

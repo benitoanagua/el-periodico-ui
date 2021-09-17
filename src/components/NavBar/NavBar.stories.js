@@ -23,7 +23,10 @@ const Template = (args) => ({
   },
   template: `
     <cs-section margin="my-4">
-      <cs-container maxWidth="max-w-screen-lg">
+      <cs-container
+        maxWidth="max-w-screen-lg"
+        :breakpoint="breakpoint"
+      >
         <div class="w-full h-40 bg-neutral-200" />
       </cs-container>
     </cs-section>
@@ -34,9 +37,9 @@ const Template = (args) => ({
     >
       <cs-container
         maxWidth="max-w-screen-lg"
+        :breakpoint="breakpoint"
       >
         <cs-nav-bar
-          :backgroundColor="backgroundColor"
           :breakpoint="breakpoint"
           :model="items"
         />
@@ -44,11 +47,14 @@ const Template = (args) => ({
     </cs-section>
 
     <cs-section margin="my-4">
-    <cs-container maxWidth="max-w-screen-lg">
+    <cs-container
+      maxWidth="max-w-screen-lg"
+      :breakpoint="breakpoint"  
+    >
       <div class="space-y-2">
           <div
             v-for="n in 50"   
-            :class="'w-'+ Math.ceil(Math.random()*3 + 8) +'/12 h-4 bg-neutral-200'"
+            class="w-full h-4 bg-neutral-200"
           />
       </div>
       </cs-container>

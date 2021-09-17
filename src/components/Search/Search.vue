@@ -88,7 +88,6 @@ export default {
 
     const classIconSearch = computed(() => ({
       "h-12 inline-flex items-center": true,
-      [`${props.breakpoint}:px-0 px-3 py-3`]: true,
     }));
     const classBoxSearch = computed(() => ({
       "bg-primary-50 border border-primary-100": true,

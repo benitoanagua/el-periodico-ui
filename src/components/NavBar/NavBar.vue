@@ -1,27 +1,13 @@
 <template>
   <div class="flex justify-between">
     <div
-      :class="
-        'inline-flex items-center ' +
-        breakpoint +
-        ':hidden ' +
-        breakpoint +
-        ':px-0 px-3 py-3'
-      "
+      :class="'inline-flex items-center ' + breakpoint + ':hidden'"
       @click="openOffCanvas"
     >
       <ph-list :size="24" />
     </div>
 
-    <div
-      :class="
-        'hidden ' +
-        breakpoint +
-        ':inline-flex items-center ' +
-        breakpoint +
-        ':px-0 px-3 py-3'
-      "
-    >
+    <div :class="'hidden ' + breakpoint + ':inline-flex items-center'">
       <ph-list :size="24" />
     </div>
 
@@ -53,15 +39,7 @@
       />
     </cs-nav>
 
-    <div
-      :class="
-        'inline-flex items-center ' +
-        breakpoint +
-        ':hidden ' +
-        breakpoint +
-        ':px-0 px-3 py-3'
-      "
-    >
+    <div :class="'inline-flex items-center ' + breakpoint + ':hidden'">
       <cs-logo height="h-6" />
     </div>
 
@@ -92,10 +70,6 @@ export default {
     PhX,
   },
   props: {
-    backgroundColor: {
-      type: String,
-      default: null,
-    },
     breakpoint: {
       type: String,
       default: "md",

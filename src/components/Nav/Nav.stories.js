@@ -53,6 +53,6 @@ Default.args = {
   breakpoint: "lg",
   offCanvasWidth: "w-60",
   divide: true,
-  visible: false,
+  visible: true,
   items: menu,
 };

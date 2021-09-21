@@ -10,14 +10,6 @@ import { reactive, computed } from "vue";
 export default {
   name: "CsNav",
   props: {
-    offCanvasWidth: {
-      type: String,
-      default: null,
-    },
-    visible: {
-      type: Boolean,
-      default: false,
-    },
     breakpoint: {
       type: String,
       default: "md",
@@ -31,18 +23,7 @@ export default {
     props = reactive(props);
     return {
       navClass: computed(() => ({
-        "min-w-min": true,
-        "-translate-x-full": !props.visible,
-        "translate-x-0": props.visible,
-        [`transform transition duration-500 ease-in-out ${props.breakpoint}:translate-x-0`]: true,
-
-        "absolute top-0 left-0 bg-white h-full": true,
-        [`${props.breakpoint}:relative
-          ${props.breakpoint}:bg-transparent
-          ${props.breakpoint}:shadow-none`]: true,
-
         "flex flex-col": true,
-        [`${props.offCanvasWidth || "w-full"}`]: true,
         [`${props.breakpoint}:inline-flex
           ${props.breakpoint}:flex-row`]: true,
         "divide-y divide-black divide-opacity-5": props.divide,

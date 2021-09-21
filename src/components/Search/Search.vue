@@ -96,7 +96,7 @@ export default {
       "shadow-2xl": true,
       hidden: !displaySearch.value,
       absolute: displaySearch.value,
-      "mt-12 pt-16 pb-2 px-4": true,
+      "-mb-32 pt-16 pb-2 px-4": true,
     }));
 
     return {

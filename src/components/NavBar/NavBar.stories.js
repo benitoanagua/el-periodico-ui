@@ -1,6 +1,9 @@
 import CsSection from "@/components/Section/Section.vue";
 import CsContainer from "@/components/Container/Container.vue";
 import CsNavBar from "@/components/NavBar/NavBar.vue";
+import CsSearch from "@/components/Search/Search.vue";
+import CsLogo from "@/components/Logo/Logo.vue";
+import { PhList } from "phosphor-vue";
 import { menu } from "@/helpers/Data";
 
 export default {
@@ -9,6 +12,9 @@ export default {
     CsSection,
     CsContainer,
     CsNavBar,
+    CsSearch,
+    CsLogo,
+    PhList,
   },
 };
 
@@ -17,6 +23,9 @@ const Template = (args) => ({
     CsSection,
     CsContainer,
     CsNavBar,
+    CsSearch,
+    CsLogo,
+    PhList,
   },
   setup() {
     return { ...args };
@@ -42,7 +51,20 @@ const Template = (args) => ({
         <cs-nav-bar
           :breakpoint="breakpoint"
           :model="items"
-        />
+        >
+          <template v-slot:menuMobile>
+            <ph-list :size="24" />
+          </template>
+          <template v-slot:menuDesktop>
+            <ph-list :size="24" />
+          </template>
+          <template v-slot:logoMobile>
+            <cs-logo height="h-6" />
+          </template>
+          <template v-slot:search>
+            <cs-search :breakpoint="breakpoint" :limit="5" />
+          </template>
+        </cs-nav-bar>
       </cs-container>
     </cs-section>
 

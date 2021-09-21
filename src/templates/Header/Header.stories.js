@@ -3,6 +3,7 @@ import CsContainer from "@/components/Container/Container.vue";
 import CsTopBar from "@/components/TopBar/TopBar.vue";
 import CsCtaBar from "@/components/CtaBar/CtaBar.vue";
 import CsNavBar from "@/components/NavBar/NavBar.vue";
+import CsSearch from "@/components/Search/Search.vue";
 import CsLogo from "@/components/Logo/Logo.vue";
 import CsButton from "@/components/Button/Button.vue";
 import CsIconNav from "@/components/IconNav/IconNav.vue";
@@ -13,6 +14,7 @@ import {
   PhYoutubeLogo,
   PhInstagramLogo,
   PhWhatsappLogo,
+  PhList,
 } from "phosphor-vue";
 import { menu } from "@/helpers/Data";
 
@@ -24,6 +26,7 @@ export default {
     CsTopBar,
     CsCtaBar,
     CsNavBar,
+    CsSearch,
     CsLogo,
     CsButton,
     CsIconNav,
@@ -33,6 +36,7 @@ export default {
     PhYoutubeLogo,
     PhInstagramLogo,
     PhWhatsappLogo,
+    PhList,
   },
 };
 
@@ -43,6 +47,7 @@ const Template = (args) => ({
     CsTopBar,
     CsCtaBar,
     CsNavBar,
+    CsSearch,
     CsLogo,
     CsButton,
     CsIconNav,
@@ -52,6 +57,7 @@ const Template = (args) => ({
     PhYoutubeLogo,
     PhInstagramLogo,
     PhWhatsappLogo,
+    PhList,
   },
   setup() {
     return { ...args };
@@ -144,7 +150,20 @@ const Template = (args) => ({
         <cs-nav-bar
           breakpoint="lg"
           :model="items"
-        />
+        >
+          <template v-slot:menuMobile>
+            <ph-list :size="24" />
+          </template>
+          <template v-slot:menuDesktop>
+            <ph-list :size="24" />
+          </template>
+          <template v-slot:logoMobile>
+            <cs-logo height="h-6" />
+          </template>
+          <template v-slot:search>
+            <cs-search breakpoint="lg" :limit="5" />
+          </template>
+        </cs-nav-bar>
       </cs-container>
     </cs-section>
   `,

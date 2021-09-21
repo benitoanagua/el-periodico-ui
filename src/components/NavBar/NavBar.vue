@@ -1,27 +1,28 @@
 <template>
-  <div class="flex justify-between">
+  <div :class="classNavBar">
     <div
-      :class="'inline-flex items-center ' + breakpoint + ':hidden'"
+      class="inline-flex items-center"
+      :class="breakpoint + ':hidden'"
       @click="openOffCanvas"
     >
-      <ph-list :size="24" />
+      <slot name="menuMobile" />
     </div>
 
-    <div :class="'hidden ' + breakpoint + ':inline-flex items-center'">
-      <ph-list :size="24" />
+    <div class="hidden items-center" :class="breakpoint + ':inline-flex'">
+      <slot name="menuDesktop" />
     </div>
 
     <cs-nav
-      :class="
-        'border-r-0 border-black border-opacity-5 ' + breakpoint + ':border-r'
-      "
+      class="border-r-0 border-black border-opacity-5"
+      :class="breakpoint + ':border-r'"
       :breakpoint="breakpoint"
       offCanvasWidth="w-60"
       :visible="displayOffCanvas"
       :divide="true"
     >
       <cs-nav-item
-        :class="'text-right ' + breakpoint + ':hidden'"
+        class="text-right"
+        :class="breakpoint + ':hidden'"
         padding="p-0"
         @click="closeOffCanvas"
       >
@@ -39,34 +40,29 @@
       />
     </cs-nav>
 
-    <div :class="'inline-flex items-center ' + breakpoint + ':hidden'">
-      <cs-logo height="h-6" />
+    <div class="inline-flex items-center" :class="breakpoint + ':hidden'">
+      <slot name="logoMobile" />
     </div>
-
-    <cs-search :breakpoint="breakpoint" :limit="5" />
+    <div>
+      <slot name="search" />
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 import CsNav from "@/components/Nav/Nav.vue";
 import CsNavItem from "@/components/Nav/NavItem.vue";
-import CsSearch from "@/components/Search/Search.vue";
-import CsLogo from "@/components/Logo/Logo.vue";
 import CsIcon from "@/components/Icon/Icon.vue";
-import { PhList, PhMagnifyingGlass, PhX } from "phosphor-vue";
+import { PhX } from "phosphor-vue";
 
 export default {
   name: "CsNavBar ",
   components: {
     CsNav,
     CsNavItem,
-    CsSearch,
-    CsLogo,
     CsIcon,
-    PhList,
-    PhMagnifyingGlass,
     PhX,
   },
   props: {
@@ -87,7 +83,15 @@ export default {
     const closeOffCanvas = () => {
       displayOffCanvas.value = false;
     };
-    return { displayOffCanvas, openOffCanvas, closeOffCanvas };
+    const classNavBar = computed(() => ({
+      "flex justify-between": true,
+    }));
+    return {
+      classNavBar,
+      displayOffCanvas,
+      openOffCanvas,
+      closeOffCanvas,
+    };
   },
 };
 </script>

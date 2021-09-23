@@ -1,43 +1,36 @@
-import CsColumns from "@/components/Columns/Columns.vue";
-import CsWidth from "@/components/Width/Width.vue";
 import { colors } from "@/helpers/Data";
 
 export default {
-  title: "Design System/Components/Width",
-  component: { CsColumns, CsWidth },
+  title: "Design System/Layout/Width",
 };
 
 const Template = (args) => ({
-  components: { CsColumns, CsWidth },
   setup() {
     return { ...args };
   },
   template: `
-    <cs-columns
+    <div
       v-for="parent in (length - 1)"
-      :space="space"
-      :padding="padding"
+      :class="'flex ' + space + ' ' + padding"
     >
-      <cs-width
+      <div
         v-for="child in (length - parent + 1)"
-        :backgroundColor="items[child - 1].bg"
-        :fraction="'w-' + ((length - parent + 1) == child ? parent : '1') + '/'+ length"
+        :class="items[child - 1].bg + ' w-' + ((length - parent + 1) == child ? parent : '1') + '/'+ length"
       >
         <span :class="'flow-root '+ items[child - 1].text + ' text-center'">
           w-{{(length - parent + 1) == child ? parent : '1'}}/{{ length }}
         </span>
-      </cs-width>
-    </cs-columns>
-    <cs-columns :space="space" :padding="padding">
-      <cs-width
-        :backgroundColor="items[0].bg"
-        fraction="w-full"
+      </div>
+    </div>
+    <div :class="space + ' ' + padding">
+      <div
+        :class="items[0].bg + ' w-full'"
       >
       <span :class="'flow-root '+ items[0].text + ' text-center'">
         w-full
       </span>
-      </cs-width>
-    </cs-columns>
+      </div>
+    </div>
   `,
 });
 

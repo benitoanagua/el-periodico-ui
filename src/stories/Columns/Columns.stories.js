@@ -1,31 +1,25 @@
-import CsColumns from "@/components/Columns/Columns.vue";
-import CsColumn from "@/components/Columns/Column.vue";
 import { colors } from "@/helpers/Data";
 
 export default {
-  title: "Design System/Components/Columns",
-  component: { CsColumns, CsColumn },
+  title: "Design System/Layout/Columns",
 };
 
 const Template = (args) => ({
-  components: { CsColumns, CsColumn },
   setup() {
     return { ...args };
   },
   template: `
-    <cs-columns
+    <div
       v-for="parent in items.length"
-      :space="space"
-      :margin="margin"
+      :class="'flex ' + space + ' ' + margin"
     >
-      <cs-column
+      <div
         v-for="child in parent"
-        :background="items[child - 1].bg"
-        :text="items[child - 1].text + ' text-center'"
+        :class="'flex-1 ' + items[child - 1].bg + ' text-center ' + items[child - 1].text"
       >
         {{ child }}
-      </cs-column>
-    </cs-columns>
+      </div>
+    </div>
   `,
 });
 

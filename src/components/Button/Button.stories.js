@@ -1,19 +1,18 @@
-import CsColumns from "@/components/Columns/Columns.vue";
 import CsButton from "@/components/Button/Button.vue";
 import { modifiers } from "@/helpers/Data";
 
 export default {
   title: "Design System/Components/Button",
-  component: { CsColumns, CsButton },
+  component: { CsButton },
 };
 
 const Template = (args) => ({
-  components: { CsColumns, CsButton },
+  components: { CsButton },
   setup() {
     return { ...args };
   },
   template: `
-    <cs-columns space="space-x-1">
+    <div class="flex space-x-1">
         <cs-button
             v-for="item in items"
             :theme="item.style"
@@ -22,7 +21,7 @@ const Template = (args) => ({
         >
             {{ item.style }}
         </cs-button>
-    </cs-columns>
+    </div>
   `,
 });
 

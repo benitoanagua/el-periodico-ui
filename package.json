@@ -1,6 +1,6 @@
 {
   "name": "ui-library-components",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,7 +12,7 @@
     "axios": "^0.21.4",
     "phosphor-vue": "^4.3.1",
     "sb": "^6.3.8",
-    "vue": "^3.0.5"
+    "vue": "^3.2.16"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

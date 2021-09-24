@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { ref, onMounted } from "vue";
 import {
   PhPlay,
   PhPause,
@@ -69,81 +70,71 @@ import {
 
 export default {
   name: "CsAudioPlayer",
-  data() {
-    return {
-      isPaused: true,
-      isMuted: false,
-      url: "https://dkihjuum4jcjr.cloudfront.net/ES_ITUNES/Shake%20It%20Up/ES_Shake%20It%20Up.mp3",
-      //   url: "https://whsh4u-panel.com/proxy/gddupgij?mp=/stream",
-      audio: null,
-      progress: 0,
-      current: "0:00",
-      length: "",
-      volume: 100,
-    };
-  },
   components: {
     PhPlay,
     PhPause,
     PhSpeakerSimpleHigh,
     PhSpeakerSimpleSlash,
   },
-  mounted() {
-    const audioPlayer = document.querySelector(".audio-player");
+  setup() {
+    const isPaused = ref(true);
+    const isMuted = ref(false);
+    const url = ref("https://filesamples.com/samples/audio/mp3/sample1.mp3");
+    const audio = new Audio(url.value);
+    const progress = ref(0);
+    const current = ref("0:00");
+    const length = ref("");
+    const volume = ref(100);
 
-    const timeline = document.querySelector(".timeline");
-    timeline.addEventListener(
-      "click",
-      (e) => {
-        const timelineWidth = window.getComputedStyle(timeline).width;
-        const timeToSeek =
-          (e.offsetX / parseInt(timelineWidth)) * this.audio.duration;
-        this.audio.currentTime = timeToSeek;
-      },
-      false
-    );
+    onMounted(() => {
+      const audioPlayer = document.querySelector(".audio-player");
 
-    const volumeSlider = audioPlayer.querySelector(".volume-slider");
-    volumeSlider.addEventListener(
-      "click",
-      (e) => {
-        const sliderWidth = window.getComputedStyle(volumeSlider).width;
-        const newVolume = e.offsetX / parseInt(sliderWidth);
-        this.audio.volume = newVolume;
-        this.volume = newVolume * 100;
-      },
-      false
-    );
+      const timeline = document.querySelector(".timeline");
+      timeline.addEventListener("click", timelineClick, false);
 
-    this.audio = new Audio(this.url);
-    this.audio.addEventListener(
-      "loadeddata",
-      () => {
-        this.length = this.getTimeCodeFromNum(this.audio.duration);
-        this.audio.volume = 1;
-      },
-      false
-    );
-    setInterval(() => {
-      this.progress = (this.audio.currentTime / this.audio.duration) * 100;
-      this.current = this.getTimeCodeFromNum(this.audio.currentTime);
-    }, 500);
-  },
-  methods: {
-    volMute() {
-      this.audio.muted = !this.audio.muted;
-      this.isMuted = !this.isMuted;
-    },
-    playPause() {
-      if (this.audio.paused) {
-        this.isPaused = false;
-        this.audio.play();
+      const volumeSlider = audioPlayer.querySelector(".volume-slider");
+      volumeSlider.addEventListener("click", volumeSliderClick, false);
+
+      audio.addEventListener("loadeddata", audioLoadeddata, false);
+
+      setInterval(() => {
+        progress.value = (audio.currentTime / audio.duration) * 100;
+        current.value = getTimeCodeFromNum(audio.currentTime);
+      }, 500);
+    });
+
+    // addEventListeners
+    const timelineClick = (e) => {
+      const timelineWidth = window.getComputedStyle(timeline).width;
+      const timeToSeek = (e.offsetX / parseInt(timelineWidth)) * audio.duration;
+      audio.currentTime = timeToSeek;
+    };
+    const volumeSliderClick = (e) => {
+      const sliderWidth = window.getComputedStyle(volumeSlider).width;
+      const newVolume = e.offsetX / parseInt(sliderWidth);
+      audio.volume = newVolume;
+      volume.value = newVolume * 100;
+    };
+    const audioLoadeddata = () => {
+      length.value = getTimeCodeFromNum(audio.duration);
+      audio.volume = 1;
+    };
+
+    // methods
+    const volMute = () => {
+      audio.muted = !audio.muted;
+      isMuted.value = !isMuted.value;
+    };
+    const playPause = () => {
+      if (audio.paused) {
+        isPaused.value = false;
+        audio.play();
       } else {
-        this.isPaused = true;
-        this.audio.pause();
+        isPaused.value = true;
+        audio.pause();
       }
-    },
-    getTimeCodeFromNum(num) {
+    };
+    const getTimeCodeFromNum = (num) => {
       let seconds = parseInt(num);
       let minutes = parseInt(seconds / 60);
       seconds -= minutes * 60;
@@ -155,7 +146,26 @@ export default {
       return `${String(hours).padStart(2, 0)}:${minutes}:${String(
         seconds % 60
       ).padStart(2, 0)}`;
-    },
+    };
+
+    return {
+      isPaused,
+      isMuted,
+      url,
+      audio,
+      progress,
+      current,
+      length,
+      volume,
+
+      timelineClick,
+      volumeSliderClick,
+      audioLoadeddata,
+
+      volMute,
+      playPause,
+      getTimeCodeFromNum,
+    };
   },
 };
 </script>

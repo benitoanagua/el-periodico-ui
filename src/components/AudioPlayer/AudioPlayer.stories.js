@@ -15,14 +15,13 @@ const Template = (args) => ({
     return { ...args };
   },
   template: `
-    <cs-audio-player />
+    <cs-audio-player :url="audio" :radio="radio"/>
   `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   breakpoint: "md",
-  //   title: "90.1 FM",
-  //   tagline: "CORREO DEL SUR - RADIO",
-  //   ctaIcons: "Escúchanos en:",
+  audio: "https://filesamples.com/samples/audio/mp3/sample4.mp3",
+  radio: true,
 };

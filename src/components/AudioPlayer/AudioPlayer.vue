@@ -1,66 +1,32 @@
 <template>
-  <div class="player flex flex-col h-16 max-w-xs">
-    <div
-      class="
-        audio-player
-        flex
-        justify-between
-        items-center
-        w-full
-        bg-primary-200
-      "
-    >
-      <div
-        class="
-          play-container
-          flex
-          justify-center
-          items-center
-          bg-accent-500
-          text-white
-          w-16
-          h-16
-        "
-        @click="playPause"
-      >
+  <div :class="classPlayer">
+    <div :class="classAudioPlayer">
+      <div :class="classAudioContainer" @click="playPause">
         <ph-play v-if="isPaused" :size="32" />
         <ph-pause v-else :size="32" />
       </div>
-      <div class="time flex">
-        <div class="current">{{ current }} / {{ length }}</div>
+      <div :class="classTime">
+        <div>{{ current }} / {{ length }}</div>
       </div>
-      <div class="volume-slider w-24 h-4 bg-black transition duration-300">
+      <div id="volume-slider" :class="classVolumeSlider">
         <div
-          class="volume-percentage bg-accent-500 h-full w-3/4"
+          :class="classVolumePercentage"
           :style="{ width: volume + '%' }"
         ></div>
       </div>
-      <div class="volume-button flex items-center" @click="volMute">
+      <div :class="classVolumeButton" @click="volMute">
         <ph-speaker-simple-high v-if="!isMuted" :size="24" />
         <ph-speaker-simple-slash v-else :size="24" />
       </div>
     </div>
-    <div
-      class="
-        timeline
-        flex flex-none
-        bg-transparent
-        h-2
-        -mt-2
-        w-full
-        cursor-pointer
-      "
-    >
-      <div
-        class="progress bg-black bg-opacity-25 transition duration-300"
-        :style="{ width: progress + '%' }"
-      ></div>
+    <div id="timeline" :class="classTimeline">
+      <div :class="classProgress" :style="{ width: progress + '%' }"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, reactive, computed, onMounted } from "vue";
 import {
   PhPlay,
   PhPause,
@@ -76,49 +42,70 @@ export default {
     PhSpeakerSimpleHigh,
     PhSpeakerSimpleSlash,
   },
-  setup() {
+  props: {
+    breakpoint: {
+      type: String,
+      default: "md",
+    },
+    url: {
+      type: String,
+      default: "https://filesamples.com/samples/audio/mp3/sample1.mp3",
+    },
+    radio: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
+    props = reactive(props);
     const isPaused = ref(true);
     const isMuted = ref(false);
-    const url = ref("https://filesamples.com/samples/audio/mp3/sample1.mp3");
-    const audio = new Audio(url.value);
     const progress = ref(0);
     const current = ref("0:00");
     const length = ref("");
     const volume = ref(100);
 
+    const audio = new Audio(props.url);
+
     onMounted(() => {
-      const audioPlayer = document.querySelector(".audio-player");
+      audio.addEventListener(
+        "loadeddata",
+        () => {
+          length.value = getTimeCodeFromNum(audio.duration);
+          audio.volume = 1;
+        },
+        false
+      );
 
-      const timeline = document.querySelector(".timeline");
-      timeline.addEventListener("click", timelineClick, false);
+      const timeline = document.querySelector("#timeline");
+      timeline.addEventListener(
+        "click",
+        (e) => {
+          const timelineWidth = window.getComputedStyle(timeline).width;
+          const timeToSeek =
+            (e.offsetX / parseInt(timelineWidth)) * audio.duration;
+          audio.currentTime = timeToSeek;
+        },
+        false
+      );
 
-      const volumeSlider = audioPlayer.querySelector(".volume-slider");
-      volumeSlider.addEventListener("click", volumeSliderClick, false);
-
-      audio.addEventListener("loadeddata", audioLoadeddata, false);
+      const volumeSlider = document.querySelector("#volume-slider");
+      volumeSlider.addEventListener(
+        "click",
+        (e) => {
+          const sliderWidth = window.getComputedStyle(volumeSlider).width;
+          const newVolume = e.offsetX / parseInt(sliderWidth);
+          audio.volume = newVolume;
+          volume.value = newVolume * 100;
+        },
+        false
+      );
 
       setInterval(() => {
         progress.value = (audio.currentTime / audio.duration) * 100;
         current.value = getTimeCodeFromNum(audio.currentTime);
       }, 500);
     });
-
-    // addEventListeners
-    const timelineClick = (e) => {
-      const timelineWidth = window.getComputedStyle(timeline).width;
-      const timeToSeek = (e.offsetX / parseInt(timelineWidth)) * audio.duration;
-      audio.currentTime = timeToSeek;
-    };
-    const volumeSliderClick = (e) => {
-      const sliderWidth = window.getComputedStyle(volumeSlider).width;
-      const newVolume = e.offsetX / parseInt(sliderWidth);
-      audio.volume = newVolume;
-      volume.value = newVolume * 100;
-    };
-    const audioLoadeddata = () => {
-      length.value = getTimeCodeFromNum(audio.duration);
-      audio.volume = 1;
-    };
 
     // methods
     const volMute = () => {
@@ -148,23 +135,64 @@ export default {
       ).padStart(2, 0)}`;
     };
 
+    // classes
+    const classPlayer = computed(() => ({
+      "flex flex-col max-w-xs": true,
+      [`${props.breakpoint}:h-12 h-10 `]: true,
+      "max-w-xs": !props.radio,
+      [`${props.breakpoint}:w-48 w-36 `]: props.radio,
+    }));
+    const classAudioPlayer = computed(() => ({
+      "flex justify-between items-center w-full": true,
+    }));
+    const classAudioContainer = computed(() => ({
+      "flex justify-center items-center bg-accent-500 text-white": true,
+      [`${props.breakpoint}:w-12 w-10 ${props.breakpoint}:h-12 h-10`]: true,
+    }));
+    const classTime = computed(() => ({
+      "flex w-16 text-sm": true,
+      hidden: props.radio,
+    }));
+    const classVolumeSlider = computed(() => ({
+      "h-4 bg-black transition duration-300": true,
+      [`${props.breakpoint}:w-24 w-16 `]: true,
+    }));
+    const classVolumePercentage = computed(() => ({
+      "bg-accent-500 h-full": true,
+    }));
+    const classVolumeButton = computed(() => ({
+      "flex items-center": true,
+    }));
+    const classTimeline = computed(() => ({
+      "flex flex-none bg-transparent h-2 -mt-2 w-full cursor-pointer": true,
+    }));
+    const classProgress = computed(() => ({
+      "bg-black bg-opacity-25 transition duration-300": true,
+      hidden: props.radio,
+    }));
+
     return {
       isPaused,
       isMuted,
-      url,
       audio,
       progress,
       current,
       length,
       volume,
 
-      timelineClick,
-      volumeSliderClick,
-      audioLoadeddata,
-
       volMute,
       playPause,
       getTimeCodeFromNum,
+
+      classPlayer,
+      classAudioPlayer,
+      classAudioContainer,
+      classTime,
+      classVolumeSlider,
+      classVolumePercentage,
+      classVolumeButton,
+      classTimeline,
+      classProgress,
     };
   },
 };

@@ -1,9 +1,9 @@
 <template>
   <div :class="radioBarClass">
-    <div :class="radioBarColumnClass">
+    <div class="flex items-center">
       <slot name="left" />
     </div>
-    <div :class="radioBarColumnClass">
+    <div :class="radioBarRightClass">
       <slot name="right" />
     </div>
   </div>
@@ -24,11 +24,10 @@ export default {
     props = reactive(props);
     return {
       radioBarClass: computed(() => ({
-        "flex justify-between": true,
-        // [`${props.breakpoint}:divide-y-0`]: props.divide,
+        [`flex ${props.breakpoint}:justify-between justify-center`]: true,
       })),
-      radioBarColumnClass: computed(() => ({
-        flex: true,
+      radioBarRightClass: computed(() => ({
+        [`${props.breakpoint}:flex hidden items-center`]: true,
       })),
     };
   },

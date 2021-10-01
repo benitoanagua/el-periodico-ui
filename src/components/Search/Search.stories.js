@@ -1,3 +1,5 @@
+import { ref } from "vue";
+import PostsService from "@/services/PostsService";
 import CsSection from "@/components/Section/Section.vue";
 import CsContainer from "@/components/Container/Container.vue";
 import CsSearch from "@/components/Search/Search.vue";
@@ -18,13 +20,17 @@ const Template = (args) => ({
     CsSearch,
   },
   setup() {
-    return { ...args };
+    const news = ref([]);
+    const postsService = ref(new PostsService());
+    postsService.value.getAll().then((data) => (news.value = data));
+    return { ...args, news };
   },
   template: `
     <cs-section backgroundColor="bg-white">
       <cs-container maxWidth="max-w-screen-lg">
         <cs-search
           :breakpoint="breakpoint"
+          :posts="news"
           :limit="limit"
         />
       </cs-container>

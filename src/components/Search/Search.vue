@@ -31,7 +31,8 @@
 
 <script>
 import { ref, reactive, computed, onMounted } from "vue";
-import PostsService from "@/services/PostsService";
+
+// import PostsService from "@/services/PostsService";
 import CsSearchForm from "@/components/Search/SearchForm.vue";
 import CsSearchResult from "@/components/Search/SearchResult.vue";
 import CsSearchResultItem from "@/components/Search/SearchResultItem.vue";
@@ -48,6 +49,10 @@ export default {
     PhMagnifyingGlass,
   },
   props: {
+    posts: {
+      type: Object,
+      default: null,
+    },
     limit: {
       type: Number,
       default: 4,
@@ -59,8 +64,7 @@ export default {
   },
   setup(props) {
     props = reactive(props);
-    const postsService = ref(new PostsService());
-    const posts = ref([]);
+
     const searchQuery = ref("");
     const displaySearch = ref(false);
 
@@ -72,12 +76,8 @@ export default {
       searchQuery.value = "";
     };
 
-    onMounted(() => {
-      postsService.value.getPosts().then((data) => (posts.value = data));
-    });
-
     const searchedPosts = computed(() => {
-      return posts.value
+      return props.posts
         .filter(
           (post) =>
             post.title.toLowerCase().indexOf(searchQuery.value.toLowerCase()) !=
@@ -100,7 +100,6 @@ export default {
     }));
 
     return {
-      posts,
       searchedPosts,
       searchQuery,
       displaySearch,

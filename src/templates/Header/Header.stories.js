@@ -1,3 +1,5 @@
+import { ref } from "vue";
+import PostsService from "@/services/PostsService";
 import CsSection from "@/components/Section/Section.vue";
 import CsContainer from "@/components/Container/Container.vue";
 import CsTopBar from "@/components/TopBar/TopBar.vue";
@@ -60,7 +62,10 @@ const Template = (args) => ({
     PhList,
   },
   setup() {
-    return { ...args };
+    const news = ref([]);
+    const postsService = ref(new PostsService());
+    postsService.value.getAll().then((data) => (news.value = data));
+    return { ...args , news };
   },
   template: `
     <cs-section
@@ -161,7 +166,11 @@ const Template = (args) => ({
             <cs-logo height="h-6" />
           </template>
           <template v-slot:search>
-            <cs-search breakpoint="lg" :limit="5" />
+            <cs-search 
+              breakpoint="lg"
+              :posts="news"
+              :limit="5"
+            />
           </template>
         </cs-nav-bar>
       </cs-container>

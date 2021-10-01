@@ -6,10 +6,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.meta {
-  @apply text-sm text-neutral-600;
-}
-
 h1 {
   @apply text-4xl md:text-5xl font-bold font-serif text-neutral-900;
 }
@@ -27,4 +23,20 @@ h5 {
 }
 h6 {
   @apply text-base md:text-lg font-bold font-serif text-neutral-900;
+}
+
+.meta-date {
+  @apply text-sm text-neutral-600;
+}
+.meta-category {
+  @apply text-sm font-bold text-accent-500 uppercase;
+}
+.meta-author {
+  @apply text-sm font-semibold text-neutral-600;
+}
+.meta-ago {
+  @apply text-sm font-semibold text-accent-500;
+}
+.meta-paragraph {
+  @apply font-serif text-base text-neutral-800;
 }

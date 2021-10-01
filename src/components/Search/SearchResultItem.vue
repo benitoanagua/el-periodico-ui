@@ -5,7 +5,7 @@
     </div>
     <div>
       <h6>{{ title }}</h6>
-      <span class="meta">{{ date }}</span>
+      <span class="meta-date">{{ date }}</span>
     </div>
   </div>
 </template>

@@ -1,7 +1,12 @@
 <template>
   <div :class="classCard">
-    <div :class="classCardImage">
-      <img :src="image" alt="" class="w-full" />
+    <div :class="classCardMedia">
+      <div class="w-full">
+        <div
+          :class="classCardMediaImage"
+          :style="'background-image: url(' + image + ')'"
+        ></div>
+      </div>
     </div>
     <div :class="classCardBody">
       <div class="meta-category">{{ category }}</div>
@@ -50,7 +55,11 @@ export default {
     },
     image: {
       type: String,
-      default: "",
+      default: null,
+    },
+    aspectRatio: {
+      type: String,
+      default: null,
     },
     excerpt: {
       type: String,
@@ -74,29 +83,41 @@ export default {
       type: String,
       default: "w-1/2",
     },
+    noWrap: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
     props = reactive(props);
 
     const classCard = computed(() => ({
-      "flex space-y-4": true,
-      [`flex-col ${props.breakpoint}:flex-row`]: props.media === "left",
-      [`${props.breakpoint}:space-x-4`]: props.media === "left",
-      [`flex-col-reverse space-y-reverse ${props.breakpoint}:flex-row-reverse`]:
-        props.media === "right",
-      [`${props.breakpoint}:space-x-reverse ${props.breakpoint}:space-x-4`]:
-        props.media === "right",
-      "flex-col": props.media === "top",
-      "flex-col-reverse space-y-reverse": props.media === "bottom",
-    }));
-    const classCardImage = computed(() => ({
       flex: true,
-      [`${props.breakpoint}:${props.mediaFraction || "w-1/2"} w-full`]:
+      [`${props.noWrap ? "space-x-4 flex-row" : "space-y-2 flex-col"}`]: true,
+      [`${props.breakpoint}:flex-row`]: props.media === "left",
+      [`${props.breakpoint}:space-x-4 ${props.breakpoint}:space-y-0`]:
+        props.media === "left" || props.media === "right",
+      [`${props.breakpoint}:flex-row-reverse ${props.breakpoint}:space-x-reverse`]:
+        props.media === "right",
+      "flex-col": props.media === "top" || props.media === "bottom",
+      [`${props.breakpoint}:flex-col-reverse ${props.breakpoint}:space-y-reverse`]:
+        props.media === "bottom",
+    }));
+    const classCardMedia = computed(() => ({
+      flex: true,
+      [`${props.mediaFraction || "w-1/2"}`]: props.noWrap,
+      [`${props.breakpoint}:${props.mediaFraction || "w-1/2"}`]:
         props.media === "left" || props.media === "right",
     }));
+    const classCardMediaImage = computed(() => ({
+      "bg-cover bg-center": true,
+      [`${props.aspectRatio || "aspect-w-2 aspect-h-2"}`]: true,
+    }));
+
     const classCardBody = computed(() => ({
-      "flex flex-col space-y-2": true,
-      [`${props.breakpoint}:${props.bodyFraction || "w-1/2"} w-full`]:
+      "flex flex-col space-y-1": true,
+      [`${props.bodyFraction || "w-1/2"}`]: props.noWrap,
+      [`${props.breakpoint}:${props.bodyFraction || "w-1/2"}`]:
         props.media === "left" || props.media === "right",
     }));
     const classCardBodyTitle = computed(() => ({
@@ -108,7 +129,8 @@ export default {
 
     return {
       classCard,
-      classCardImage,
+      classCardMedia,
+      classCardMediaImage,
       classCardBody,
       classCardBodyTitle,
       classCardBodyMeta,

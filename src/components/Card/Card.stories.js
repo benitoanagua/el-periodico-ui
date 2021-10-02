@@ -31,20 +31,24 @@ const Template = (args) => ({
       breakpoint="lg"
       maxWidth="max-w-screen-lg"
     >
-      <cs-card
-        v-for="post in posts"
-        :breakpoint="breakpoint"
-        :heading="2"
-        :media="media"
-        :mediaFraction="mediaFraction"
-        :bodyFraction="bodyFraction"
-        :title="post.title"
-        :image="post.image"
-        :excerpt="post.excerpt"
-        :author="post.author"
-        :category="post.category"
-        :date="post.date"
-      />
+    <div class="grid grid-cols-1 ">
+      <div v-for="post in posts">
+        <cs-card
+          :breakpoint="breakpoint"
+          :heading="2"
+          :media="media"
+          :mediaFraction="mediaFraction"
+          :bodyFraction="bodyFraction"
+          :aspectRatio="aspectRatio"
+          :title="post.title"
+          :image="post.image"
+          :excerpt="post.excerpt"
+          :author="post.author"
+          :category="post.category"
+          :date="post.date"
+        />
+        </div>
+      </div>
     </cs-container>
   </cs-section>
   `,
@@ -56,6 +60,7 @@ MediaLeft.args = {
   media: "left",
   mediaFraction: "w-1/2",
   bodyFraction: "w-1/2",
+  aspectRatio: "aspect-w-1 aspect-h-1",
 };
 export const MediaRight = Template.bind({});
 MediaRight.args = {
@@ -63,6 +68,7 @@ MediaRight.args = {
   media: "right",
   mediaFraction: "w-1/2",
   bodyFraction: "w-1/2",
+  aspectRatio: "aspect-w-1 aspect-h-1",
 };
 export const MediaTop = Template.bind({});
 MediaTop.args = {
@@ -70,6 +76,7 @@ MediaTop.args = {
   media: "top",
   mediaFraction: "w-1/2",
   bodyFraction: "w-1/2",
+  aspectRatio: "aspect-w-1 aspect-h-1",
 };
 export const MediaBottom = Template.bind({});
 MediaBottom.args = {
@@ -77,4 +84,5 @@ MediaBottom.args = {
   media: "bottom",
   mediaFraction: "w-1/2",
   bodyFraction: "w-1/2",
+  aspectRatio: "aspect-w-1 aspect-h-1",
 };

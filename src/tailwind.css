@@ -29,10 +29,10 @@ h6 {
   @apply text-xs text-neutral-600;
 }
 .meta-category {
-  @apply text-xs font-semibold text-accent-500 uppercase;
+  @apply text-xs text-accent-500 uppercase;
 }
 .meta-author {
-  @apply text-xs font-semibold text-neutral-600;
+  @apply text-xs text-neutral-600;
 }
 .meta-ago {
   @apply text-xs text-neutral-500;

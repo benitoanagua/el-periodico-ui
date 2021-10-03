@@ -44,6 +44,7 @@ const Template = (args) => ({
           mediaFraction="w-4/7"
           bodyFraction="w-3/7"
           aspectRatio="aspect-w-3 aspect-h-2"
+          url="#"
           :title="post.title"
           :image="post.image"
           :excerpt="post.excerpt"
@@ -62,18 +63,18 @@ const Template = (args) => ({
       maxWidth="max-w-screen-lg"
     >
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div v-for="post in level2">
-          <cs-card
-            :breakpoint="breakpoint"
-            :heading="5"
-            media="top"
-            aspectRatio="aspect-w-3 aspect-h-2"
-            :title="post.title"
-            :image="post.image"
-            :category="post.category"
-            :date="post.date"
-          />
-        </div>
+        <cs-card
+          v-for="post in level2"
+          :breakpoint="breakpoint"
+          :heading="5"
+          media="top"
+          aspectRatio="aspect-w-3 aspect-h-2"
+          url="#"
+          :title="post.title"
+          :image="post.image"
+          :category="post.category"
+          :date="post.date"
+        />
       </div>
     </cs-container>
   </cs-section>
@@ -84,21 +85,21 @@ const Template = (args) => ({
       maxWidth="max-w-screen-lg"
     >
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div v-for="post in level3">
-          <cs-card
-            :breakpoint="breakpoint"
-            :heading="6"
-            media="left"
-            mediaFraction="w-1/3"
-            bodyFraction="w-2/3"
-            aspectRatio="aspect-w-1 aspect-h-1"
-            :title="post.title"
-            :image="post.image"
-            :category="post.category"
-            :date="post.date"
-            :noWrap="true"
-          />
-        </div>
+        <cs-card
+          v-for="post in level3"
+          :breakpoint="breakpoint"
+          :heading="6"
+          media="left"
+          mediaFraction="w-1/3"
+          bodyFraction="w-2/3"
+          aspectRatio="aspect-w-1 aspect-h-1"
+          url="#"
+          :title="post.title"
+          :image="post.image"
+          :category="post.category"
+          :date="post.date"
+          :noWrap="true"
+        />
       </div>
     </cs-container>
   </cs-section>

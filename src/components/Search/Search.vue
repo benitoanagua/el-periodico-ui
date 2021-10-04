@@ -30,9 +30,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed, onMounted } from "vue";
-
-// import PostsService from "@/services/PostsService";
+import { ref, reactive, computed } from "vue";
 import CsSearchForm from "@/components/Search/SearchForm.vue";
 import CsSearchResult from "@/components/Search/SearchResult.vue";
 import CsSearchResultItem from "@/components/Search/SearchResultItem.vue";

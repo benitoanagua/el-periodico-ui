@@ -1,8 +1,5 @@
-import CsDescriptionList from "@/components/DescriptionList/DescriptionList.vue";
-
 export default {
   title: "Design System/Base/Typography",
-  component: CsDescriptionList,
   argTypes: {
     nameFamily: {
       name: "Name Font Family",
@@ -11,31 +8,36 @@ export default {
         type: null,
       },
     },
-    dummyText: {
-      name: "Lorem Ipsum",
-      type: { name: "string", required: false },
-      control: {
-        type: "text",
-      },
-    },
   },
 };
 
 const Template = (args) => ({
-  components: { CsDescriptionList },
   setup() {
-    return { ...args };
+    const dummyText =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    return { ...args, dummyText };
   },
   template: `
   <h3 class="">{{nameFamily}}</h3>
-  <cs-description-list  :loremIpsum="dummyText" :items="fontFamily" :divider="true"/>
+  <div class="inline-flex flex-col space-y-2 divide-y divide-neutral-100">
+    <div
+      class="inline-flex flex-col"  
+      v-for="item in fontFamily"
+    >
+      <div class="font-sans text-sm text-neutral-500 pt-2">
+        {{ item.variant }}
+      </div>
+      <div :class="item.font">
+        {{ dummyText }}
+      </div>
+    </div>
+  </div>
   `,
 });
 
 export const Serif = Template.bind({});
 Serif.args = {
   nameFamily: "Caladea",
-  dummyText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   fontFamily: [
     { variant: "Regular 400", font: "font-serif font-normal" },
     { variant: "Regular 400 italic", font: "font-serif font-normal italic" },
@@ -47,7 +49,6 @@ Serif.args = {
 export const Sans = Template.bind({});
 Sans.args = {
   nameFamily: "Blinker",
-  dummyText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   fontFamily: [
     { variant: "Extra-light 200", font: "font-sans font-extralight" },
     { variant: "Light 300", font: "font-sans font-light" },

@@ -12,7 +12,7 @@ const Template = (args) => ({
     return { ...args };
   },
   template: `
-    <div class="flex space-x-1">
+    <div class="inline-flex flex-col space-y-1">
         <cs-button
             v-for="item in items"
             :theme="item.style"

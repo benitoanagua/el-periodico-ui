@@ -1,18 +1,22 @@
-import CsPalette from "@/components/Palette/Palette.vue";
-
 export default {
   title: "Design System/Base/Colors",
-  component: CsPalette,
 };
 
 const Template = (args) => ({
-  components: { CsPalette },
   setup() {
     return { ...args };
   },
   template: `
-  <h3 class="">{{nameColor}}</h3>
-  <cs-palette :name="nameColor" :items="colors"/>
+  <div class="flex flex-col">
+    <div
+      v-for="item in colors"
+      class="flex flex-row justify-between font-mono text-sm py-2 px-3 max-w-xs"
+      :class="'bg-' + nameColor.toLowerCase() + '-' + item.name + ( item.name > 400 ? ' text-white' : ' text-black')"
+    >
+      <div>{{ item.name }}</div>
+      <div>{{ item.value }}</div>
+    </div>
+  </div>
   `,
 });
 

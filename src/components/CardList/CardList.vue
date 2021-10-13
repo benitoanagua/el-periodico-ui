@@ -1,7 +1,9 @@
 <template>
   <div :class="classCard">
     <div :class="classCaption">
-      {{ caption }}
+      <cs-button theme="primary" size="small" @click="onClick" class="w-40">
+        {{ caption }}
+      </cs-button>
     </div>
     <div :class="classList">
       <slot />
@@ -11,9 +13,13 @@
 
 <script>
 import { reactive, computed } from "vue";
+import CsButton from "@/components/Button/Button.vue";
 
 export default {
   name: "CsCardList",
+  components: {
+    CsButton,
+  },
   props: {
     theme: {
       type: String,
@@ -29,16 +35,16 @@ export default {
       default: "Title",
     },
   },
-  setup(props) {
+  emits: ["click"],
+  setup(props, { emit }) {
     props = reactive(props);
     const classCard = computed(() => ({
-      "flex flex-col mt-4 max-w-xs shadow-lg": true,
-      [`bg-${props.theme}-50`]: true,
+      "w-full md:max-w-xs": true,
+      "flex flex-col mt-3 shadow-lg": true,
+      [`bg-${props.theme}-100`]: true,
     }));
     const classCaption = computed(() => ({
-      "inline-flex bg-accent-500 min-w-min": true,
-      "mx-auto px-8 py-1 -mt-4": true,
-      "text-white text-center uppercase font-semibold tracking-widest": true,
+      "mx-auto -mt-3 mb-1.5": true,
     }));
     const classList = computed(() => ({
       "flex flex-col px-6 pb-4": true,
@@ -49,6 +55,9 @@ export default {
       classCard,
       classCaption,
       classList,
+      onClick() {
+        emit("click");
+      },
     };
   },
 };

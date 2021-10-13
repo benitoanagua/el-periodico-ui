@@ -5,6 +5,12 @@ import CsCardListItem from "@/components/CardList/CardListItem.vue";
 
 export default {
   title: "Design System/Components/CardList",
+  argTypes: {
+    theme: {
+      options: ["neutral", "primary", "secondary", "accent"],
+      control: { type: "inline-radio" },
+    },
+  },
   component: {
     CsCardList,
     CsCardListItem,
@@ -40,20 +46,5 @@ const Template = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
   theme: "neutral",
-  caption: "Hoy",
-};
-export const Primary = Template.bind({});
-Primary.args = {
-  theme: "primary",
-  caption: "Hoy",
-};
-export const Secondary = Template.bind({});
-Secondary.args = {
-  theme: "secondary",
-  caption: "Hoy",
-};
-export const Accent = Template.bind({});
-Accent.args = {
-  theme: "accent",
   caption: "Hoy",
 };

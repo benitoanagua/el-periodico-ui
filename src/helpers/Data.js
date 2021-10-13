@@ -28,31 +28,14 @@ export const modifiers = [
 ];
 
 export const menu = [
-  { title: "Inicio", link: "#", active: false, submenu: [] },
-  { title: "Política", link: "#", active: false, submenu: [] },
-  {
-    title: "Local",
-    link: "#",
-    active: true,
-    submenu: [
-      { title: "SubItem 1", link: "#", active: false },
-      { title: "SubItem 2", link: "#", active: false },
-    ],
-  },
-  { title: "Seguridad", link: "#", active: false, submenu: [] },
-  { title: "Sociedad", link: "#", active: false, submenu: [] },
-  { title: "Economía", link: "#", active: false, submenu: [] },
-  { title: "Mundo", link: "#", active: false, submenu: [] },
-  {
-    title: "Deporte",
-    link: "#",
-    active: false,
-    submenu: [
-      { title: "SubItem 1", link: "#", active: false },
-      { title: "SubItem 2", link: "#", active: false },
-      { title: "SubItem 3", link: "#", active: false },
-    ],
-  },
-  { title: "Cultura", link: "#", active: false, submenu: [] },
-  { title: "Opinión", link: "#", active: false, submenu: [] },
+  { id: 1, title: "Inicio", link: "#" },
+  { id: 2, title: "Política", link: "#" },
+  { id: 3, title: "Local", link: "#" },
+  { id: 4, title: "Seguridad", link: "#" },
+  { id: 5, title: "Sociedad", link: "#" },
+  { id: 6, title: "Economía", link: "#" },
+  { id: 7, title: "Mundo", link: "#" },
+  { id: 8, title: "Deporte", link: "#" },
+  { id: 9, title: "Cultura", link: "#" },
+  { id: 10, title: "Opinión", link: "#" },
 ];

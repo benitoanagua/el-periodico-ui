@@ -24,17 +24,17 @@
         </cs-icon>
       </div>
       <cs-nav
-        class="border-r-0 border-black border-opacity-5"
-        :class="breakpoint + ':border-r ' + breakpoint + ':w-auto w-full'"
+        :class="breakpoint + ':w-auto w-full'"
         :breakpoint="breakpoint"
         :divide="true"
       >
         <cs-nav-item
-          v-for="(item, index) in model"
+          v-for="item in model"
           :breakpoint="breakpoint"
           :title="item.title"
           :link="item.link"
           :active="item.active"
+          :key="item.id"
         />
       </cs-nav>
     </div>

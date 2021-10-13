@@ -34,7 +34,6 @@ import { ref, reactive, computed } from "vue";
 import CsSearchForm from "@/components/Search/SearchForm.vue";
 import CsSearchResult from "@/components/Search/SearchResult.vue";
 import CsSearchResultItem from "@/components/Search/SearchResultItem.vue";
-import CsIcon from "@/components/Icon/Icon.vue";
 import { PhMagnifyingGlass } from "phosphor-vue";
 
 export default {
@@ -43,7 +42,6 @@ export default {
     CsSearchForm,
     CsSearchResult,
     CsSearchResultItem,
-    CsIcon,
     PhMagnifyingGlass,
   },
   props: {

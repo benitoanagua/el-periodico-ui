@@ -39,6 +39,7 @@ const Template = (args) => ({
             :title="item.title"
             :link="item.link"
             :active="item.active"
+            :key="item.id"
           >
           </cs-nav-item>
         </cs-nav>

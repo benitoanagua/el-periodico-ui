@@ -49,7 +49,7 @@ export default {
         "bg-transparent text-neutral-900": props.theme === "default",
         "ring-inset ring-1 ring-neutral-900 hover:ring-neutral-400":
           props.theme === "default",
-        "bg-accent-500 hover:bg-accent-700": props.theme === "primary",
+        "bg-accent-500 hover:bg-accent-600": props.theme === "primary",
         "bg-neutral-700 hover:bg-neutral-900": props.theme === "secondary",
         "bg-green-base hover: hover:bg-green-dark": props.theme === "success",
         "bg-blue-base hover:bg-blue-dark": props.theme === "info",

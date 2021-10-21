@@ -28,64 +28,35 @@ const Template = (args) => ({
     const card3 = ref(null);
     const card4 = ref(null);
     const postsService = ref(new PostsService());
+
     postsService.value.getPosts(1, 5).then((data) => (card1.value = data));
     postsService.value.getPosts(6, 10).then((data) => (card2.value = data));
     postsService.value.getPosts(11, 15).then((data) => (card3.value = data));
     postsService.value.getPosts(16, 20).then((data) => (card4.value = data));
-    return { ...args, card1, card2, card3, card4 };
+
+    const cards = [
+      { list: card1, caption: "Hoy", theme: "primary" },
+      { list: card2, caption: "Semana", theme: "accent" },
+      { list: card3, caption: "Mes", theme: "neutral" },
+      { list: card4, caption: "Archivo", theme: "secondary" },
+    ];
+
+    return { ...args, cards };
   },
   template: `
   <div>mi texto superior</div>
   <cs-stack>
-    <cs-stack-item :breakpoint="breakpoint" :total="4" :order="1">
-      <cs-card-list
-        theme="primary"
-        caption="Hoy"
-      >
+    <cs-stack-item
+      v-for="({list, caption, theme}, index) in cards"  
+      :breakpoint="breakpoint" :total="cards.length" :order="index + 1"
+      :caption="caption"
+    >
+      <cs-card-list :theme="theme" >
         <cs-card-list-item
-          v-for="(item, index) in card1"
-          :decimal="index + 1"
-          :category="item.category"
-          :title="item.title"
-        />
-      </cs-card-list>
-    </cs-stack-item>
-    <cs-stack-item :breakpoint="breakpoint" :total="4" :order="2">
-      <cs-card-list
-        theme="accent"
-        caption="Semana"
-      >
-        <cs-card-list-item
-          v-for="(item, index) in card2"
-          :decimal="index + 1"
-          :category="item.category"
-          :title="item.title"
-        />
-      </cs-card-list>
-    </cs-stack-item>
-    <cs-stack-item :breakpoint="breakpoint" :total="4" :order="3">
-      <cs-card-list
-        theme="neutral"
-        caption="Mes"
-      >
-        <cs-card-list-item
-          v-for="(item, index) in card3"
-          :decimal="index + 1"
-          :category="item.category"
-          :title="item.title"
-        />
-      </cs-card-list>
-    </cs-stack-item>
-    <cs-stack-item :breakpoint="breakpoint" :total="4" :order="4">
-      <cs-card-list
-        theme="secondary"
-        caption="Todos los tiempos"
-      >
-        <cs-card-list-item
-          v-for="(item, index) in card4"
-          :decimal="index + 1"
-          :category="item.category"
-          :title="item.title"
+          v-for="(card, number) in list.value"
+          :decimal="number + 1"
+          :category="card.category"
+          :title="card.title"
         />
       </cs-card-list>
     </cs-stack-item>

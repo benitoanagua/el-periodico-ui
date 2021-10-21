@@ -29,10 +29,7 @@ const Template = (args) => ({
     return { ...args, level };
   },
   template: `
-  <cs-card-list
-    :theme="theme"
-    :caption="caption"
-  >
+  <cs-card-list :theme="theme">
     <cs-card-list-item
       v-for="(item, index) in level"
       :decimal="index + 1"
@@ -46,5 +43,4 @@ const Template = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
   theme: "neutral",
-  caption: "Hoy",
 };

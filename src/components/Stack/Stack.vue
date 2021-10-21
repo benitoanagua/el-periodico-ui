@@ -1,5 +1,5 @@
 <template>
-  <div :class="classStack">
+  <div :class="classStack" :style="{ height: 660 + 'px' }">
     <slot />
   </div>
 </template>

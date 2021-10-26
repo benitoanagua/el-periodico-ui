@@ -6,6 +6,7 @@
 
 <script>
 import { reactive, computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
   name: "CsStack",
@@ -18,11 +19,14 @@ export default {
   setup(props) {
     props = reactive(props);
 
-    const classStack = computed(() => ({
-      [`mx-3 ${props.breakpoint}:mx-0`]: true,
-    }));
+    const store = useStore();
+    store.dispatch("stack/cleanItems");
+    // console.log("items: " + store.getters["stack/getStackLenght"]);
+
     return {
-      classStack,
+      classStack: computed(() => ({
+        [`mx-3 ${props.breakpoint}:mx-0`]: true,
+      })),
     };
   },
 };

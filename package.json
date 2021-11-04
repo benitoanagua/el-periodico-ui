@@ -12,9 +12,7 @@
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "axios": "^0.21.4",
     "phosphor-vue": "^4.3.1",
-    "uuid": "^8.3.2",
-    "vue": "^3.2.16",
-    "vuex": "^4.0.2"
+    "vue": "^3.2.16"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",

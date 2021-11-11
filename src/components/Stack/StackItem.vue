@@ -3,10 +3,11 @@
     <div :class="classStackItem">
       <div class="-mb-3 z-10">
         <cs-button
-          :theme="active"
+          :theme="getTheme"
           size="small"
           class="w-40"
-          @click="onClickBtn"
+          @click="sendFront"
+          :disabled="index === 0"
         >
           {{ caption }}
         </cs-button>
@@ -17,7 +18,13 @@
 </template>
 
 <script>
-import { reactive, computed } from "vue";
+import {
+  reactive,
+  computed,
+  inject,
+  watchEffect,
+  getCurrentInstance,
+} from "vue";
 import CsButton from "@/components/Button/Button.vue";
 
 export default {
@@ -34,30 +41,42 @@ export default {
       type: String,
       default: "Titulo",
     },
-    total: {
-      type: Number,
-      default: 1,
-    },
-    order: {
-      type: Number,
-      default: 1,
-    },
   },
   setup(props) {
     props = reactive(props);
 
+    const instance = getCurrentInstance();
+
+    const { items } = inject("itemsState", { items: [] });
+
+    const index = computed(() =>
+      items.value.findIndex((target) => target.uid === instance.uid)
+    );
+
+    const sendFront = () => {
+      items.value.splice(index.value, 1);
+      items.value.splice(0, 1, instance);
+    };
+
+    watchEffect(() => {
+      if (index.value === -1) {
+        items.value.push(instance);
+      }
+    });
+
     return {
+      sendFront,
+      index,
+
       classStackItem: computed(() => ({
         absolute: true,
         "flex items-center flex-col": true,
-        [`z-${(props.total - props.order + 1) * 10}`]: true,
-        [`top-${(props.total - props.order) * 8}`]: true,
-        [`${props.breakpoint}:left-${(props.order - 1) * 4}`]: true,
+        [`z-${(items.value.length - (index.value + 1) + 1) * 10}`]: true,
+        [`top-${(items.value.length - (index.value + 1)) * 8}`]: true,
+        [`${props.breakpoint}:left-${(index.value + 1 - 1) * 4}`]: true,
       })),
 
-      active: computed(() => (props.order === 1 ? "secondary" : "primary")),
-
-      onClickBtn: () => {},
+      getTheme: computed(() => (index.value === 0 ? "secondary" : "primary")),
     };
   },
 };

@@ -20,8 +20,8 @@ const Template = (args) => ({
       :backgroundColor="backgroundColor"
     >
       <br>
-    </cs-section>
-  </cs-container>
+    </cs-container>
+  </cs-section>
   `,
 });
 

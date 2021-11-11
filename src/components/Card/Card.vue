@@ -12,7 +12,7 @@
         </div>
       </div>
       <div :class="classCardBody">
-        <div class="meta-category">{{ category }}</div>
+        <div v-if="category" class="meta-category">{{ category }}</div>
         <div :class="classCardBodyTitle">
           <a :href="url">
             <h1 v-if="heading === 1">{{ title }}</h1>
@@ -26,7 +26,7 @@
         <div :class="classCardBodyMeta">
           <div v-if="author" class="meta-author">{{ author }}</div>
           <span v-if="author" class="h-3 border-l border-neutral-300"></span>
-          <div class="meta-ago">{{ date }}</div>
+          <div v-if="date" class="meta-ago">{{ date }}</div>
         </div>
         <p v-if="excerpt" class="meta-paragraph">{{ excerpt }}</p>
       </div>
@@ -79,11 +79,9 @@ export default {
     },
     category: {
       type: String,
-      default: "Category",
     },
     date: {
       type: String,
-      default: "DD-MM-YYYY",
     },
     mediaFraction: {
       type: String,

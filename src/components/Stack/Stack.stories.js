@@ -48,7 +48,7 @@ const Template = (args) => ({
   <cs-stack>
     <cs-stack-item
       v-for="({list, caption, theme}, index) in cards"  
-      :breakpoint="breakpoint" :total="cards.length" :order="index + 1"
+      :breakpoint="breakpoint"
       :caption="caption"
     >
       <cs-card-list :theme="theme" >

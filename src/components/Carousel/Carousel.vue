@@ -1,10 +1,10 @@
 <template>
   <div :class="classCarousel">
     <div class="flex flex-col -mt-10">
-      <div class="inline-flex m-2">
+      <div class="inline-flex m-2 cursor-pointer">
         <slot name="arrownav" />
       </div>
-      <div class="grid grid-cols-2 m-2">
+      <div class="grid grid-cols-2 m-2 cursor-pointer">
         <slot name="dotnav" />
       </div>
     </div>
@@ -29,8 +29,10 @@ export default {
     props = reactive(props);
 
     const slides = ref([]);
+    const items = ref([]);
     provide("carouselState", {
       slides,
+      items,
     });
 
     return {

@@ -20,7 +20,6 @@ export default {
     CsCard,
     PhCaretCircleLeft,
     PhCaretCircleRight,
-    PhSquare,
   },
 };
 
@@ -34,13 +33,12 @@ const Template = (args) => ({
     CsCard,
     PhCaretCircleLeft,
     PhCaretCircleRight,
-    PhSquare,
   },
   setup() {
     const slides = ref(null);
     const postsService = ref(new PostsService());
 
-    postsService.value.getPosts(4, 8).then((data) => (slides.value = data));
+    postsService.value.getPosts(15, 20).then((data) => (slides.value = data));
 
     return { ...args, slides };
   },
@@ -57,13 +55,7 @@ const Template = (args) => ({
       </cs-carousel-arrow-nav>
     </template>
     <template v-slot:dotnav>
-      <cs-carousel-dot-nav>
-        <ph-square v-for="(slide, n) in slides"
-          :size="24"
-          weight="fill"
-          :class="n === 1 ? 'text-accent-500':'text-primary-400'"
-        />
-      </cs-carousel-dot-nav>
+      <cs-carousel-dot-nav v-for="(slide, n) in slides" :item="n" />
     </template>
     <template v-slot:content>
       <cs-carousel-slides :visibleItems="visibleItems">
@@ -74,7 +66,7 @@ const Template = (args) => ({
             media="top"
             aspectRatio="aspect-w-1 aspect-h-1"
             url="#"
-            :title="post.title"
+            :title="index+' '+post.title"
             :image="post.image"
             :noWrap="false"
           />

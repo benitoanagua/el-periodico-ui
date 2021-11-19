@@ -1,14 +1,14 @@
 <template>
   <div :class="classCarousel">
-    <div class="flex flex-col -mt-10">
-      <div class="inline-flex m-2 cursor-pointer">
+    <div :class="classCarouselNav">
+      <div :class="classCarouselArrowNav">
         <slot name="arrownav" />
       </div>
-      <div class="grid grid-cols-2 m-2 cursor-pointer">
+      <div :class="classCarouselDotNav">
         <slot name="dotnav" />
       </div>
     </div>
-    <div class="w-full -mt-10 pb-4">
+    <div :class="classCarouselContent">
       <slot name="content" />
     </div>
   </div>
@@ -37,8 +37,29 @@ export default {
 
     return {
       classCarousel: computed(() => ({
-        "flex mt-10": true,
+        "flex flex-col mt-10": true,
+        [`${props.breakpoint}:flex-row`]: true,
         "bg-primary-200": true,
+      })),
+      classCarouselNav: computed(() => ({
+        "flex flex-row justify-between -mt-10": true,
+        [`${props.breakpoint}:flex-col`]: true,
+        [`${props.breakpoint}:justify-start`]: true,
+      })),
+      classCarouselArrowNav: computed(() => ({
+        "inline-flex my-2 cursor-pointer": true,
+        [`${props.breakpoint}:m-2`]: true,
+      })),
+      classCarouselDotNav: computed(() => ({
+        "grid my-2 cursor-pointer": true,
+        [`grid-cols-${slides.value.length}`]: true,
+        [`${props.breakpoint}:grid-cols-2`]: true,
+        [`${props.breakpoint}:m-2`]: true,
+      })),
+      classCarouselContent: computed(() => ({
+        "w-full mt-0 pb-4 pr-0": true,
+        [`${props.breakpoint}:-mt-10`]: true,
+        [`${props.breakpoint}:pr-4`]: true,
       })),
     };
   },

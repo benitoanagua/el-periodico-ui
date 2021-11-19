@@ -43,7 +43,7 @@ const Template = (args) => ({
     return { ...args, slides };
   },
   template: `
-  <cs-carousel>
+  <cs-carousel :breakpoint="breakpoint">
     <template v-slot:arrownav>
       <cs-carousel-arrow-nav>
         <template v-slot:left>
@@ -58,7 +58,11 @@ const Template = (args) => ({
       <cs-carousel-dot-nav v-for="(slide, n) in slides" :item="n" />
     </template>
     <template v-slot:content>
-      <cs-carousel-slides :visibleItems="visibleItems">
+      <cs-carousel-slides
+        :showDesktop="showDesktop"
+        :showMobile="showMobile"
+        :breakpoint="breakpoint"
+      >
         <cs-carousel-slide-item v-for="(post, index) in slides">
           <cs-card
             :breakpoint="breakpoint"
@@ -81,5 +85,6 @@ const Template = (args) => ({
 export const Default = Template.bind({});
 Default.args = {
   breakpoint: "md",
-  visibleItems: 2,
+  showDesktop: 3,
+  showMobile: 2,
 };

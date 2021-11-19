@@ -25,18 +25,17 @@ export default {
       items.value.findIndex((target) => target.uid === slides.value[0].uid)
     );
 
-    const dotClick = () => {
-      while (props.item !== active.value) {
-        if (props.item > active.value) {
-          slides.value.push(slides.value.shift());
-        } else {
-          slides.value.unshift(slides.value.pop());
-        }
-      }
-    };
-
     return {
-      dotClick,
+      dotClick: () => {
+        while (props.item !== active.value) {
+          if (props.item > active.value) {
+            slides.value.push(slides.value.shift());
+          } else {
+            slides.value.unshift(slides.value.pop());
+          }
+        }
+      },
+
       classIcon: computed(() => ({
         [`${
           props.item === active.value ? "text-accent-500" : "text-primary-400"

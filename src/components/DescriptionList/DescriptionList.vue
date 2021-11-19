@@ -1,6 +1,6 @@
 <template>
   <dl :class="listClass">
-    <template v-for="item in items">
+    <template v-for="(item, n) in items" :key="n">
       <cs-description-item
         :title="item.variant"
         :description="item.font"

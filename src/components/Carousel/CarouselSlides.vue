@@ -14,22 +14,29 @@ export default {
       type: String,
       default: "md",
     },
-    visibleItems: {
+    showDesktop: {
+      type: Number,
+      default: 1,
+    },
+    showMobile: {
       type: Number,
       default: 1,
     },
   },
   setup(props) {
     props = reactive(props);
-    const display = ref(props.visibleItems);
+    const displayDesktop = ref(props.showDesktop);
+    const displayMobile = ref(props.showMobile);
 
     provide("slidesState", {
-      display,
+      displayDesktop,
+      displayMobile,
     });
 
     return {
       classCarouselSlides: computed(() => ({
-        [`grid grid-cols-${props.visibleItems} gap-6`]: true,
+        [`grid grid-cols-${props.showMobile} gap-6`]: true,
+        [`${props.breakpoint}:grid-cols-${props.showDesktop}`]: true,
       })),
     };
   },

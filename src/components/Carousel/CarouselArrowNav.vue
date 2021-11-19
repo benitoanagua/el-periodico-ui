@@ -7,18 +7,15 @@ import { inject } from "vue";
 export default {
   name: "CsCarouselArrowNav",
   setup() {
-    const { slides, items } = inject("carouselState");
-
-    const goNext = () => {
-      slides.value.push(slides.value.shift());
-    };
-    const goPrev = () => {
-      slides.value.unshift(slides.value.pop());
-    };
+    const { slides } = inject("carouselState");
 
     return {
-      goNext,
-      goPrev,
+      goNext: () => {
+        slides.value.push(slides.value.shift());
+      },
+      goPrev: () => {
+        slides.value.unshift(slides.value.pop());
+      },
     };
   },
 };

@@ -29,10 +29,23 @@ export default {
       slides: [],
       items: [],
     });
-    const { display } = inject("slidesState");
+    const { displayDesktop, displayMobile } = inject("slidesState");
 
     const index = computed(() =>
       slides.value.findIndex((target) => target.uid === instance.uid)
+    );
+    const lower = computed(() =>
+      displayDesktop.value < displayMobile.value
+        ? displayDesktop.value
+        : displayMobile.value
+    );
+    const upper = computed(() =>
+      displayDesktop.value > displayMobile.value
+        ? displayDesktop.value
+        : displayMobile.value
+    );
+    const range = computed(
+      () => index.value + 1 > lower.value && index.value < upper.value
     );
 
     watchEffect(() => {
@@ -46,7 +59,11 @@ export default {
 
     return {
       classCarouselItem: computed(() => ({
-        hidden: index.value + 1 > display.value,
+        hidden: index.value + 1 > upper.value,
+        [`hidden ${props.breakpoint}:block`]:
+          range.value && displayDesktop.value > displayMobile.value,
+        [`block ${props.breakpoint}:hidden`]:
+          range.value && displayMobile.value > displayDesktop.value,
         [`order-${index.value + 1}`]: true,
       })),
     };

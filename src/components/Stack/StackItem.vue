@@ -1,6 +1,6 @@
 <template>
   <div class="relative block w-full">
-    <div :class="classStackItem">
+    <div :class="classStackItem" ref="container">
       <div class="-mb-3 z-10">
         <cs-button
           :theme="getTheme"
@@ -12,18 +12,23 @@
           {{ caption }}
         </cs-button>
       </div>
-      <slot />
+      <div>
+        <slot />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import {
+  ref,
   reactive,
   computed,
   inject,
   watchEffect,
   getCurrentInstance,
+  onMounted,
+  onUnmounted,
 } from "vue";
 import CsButton from "@/components/Button/Button.vue";
 
@@ -45,10 +50,10 @@ export default {
   setup(props) {
     props = reactive(props);
 
+    const container = ref(null);
+
     const instance = getCurrentInstance();
-
-    const { items } = inject("itemsState", { items: [] });
-
+    const { items, sizes } = inject("itemsState", { items: [], sizes: [] });
     const index = computed(() =>
       items.value.findIndex((target) => target.uid === instance.uid)
     );
@@ -57,6 +62,23 @@ export default {
       items.value.splice(index.value, 1);
       items.value.splice(0, 1, instance);
     };
+
+    const observeMutations = (targetNode, callback) => {
+      const config = { attributes: true, childList: true, subtree: true };
+      const observer = new MutationObserver(callback);
+      observer.observe(targetNode, config);
+      return observer;
+    };
+
+    let observer = null;
+    onMounted(() => {
+      observer = observeMutations(container.value, () => {
+        sizes.value[index.value] =
+          container.value.offsetHeight +
+          32 * (items.value.length - (index.value + 1));
+      });
+    });
+    onUnmounted(() => observer?.disconnect());
 
     watchEffect(() => {
       if (index.value === -1) {
@@ -67,6 +89,7 @@ export default {
     return {
       sendFront,
       index,
+      container,
 
       classStackItem: computed(() => ({
         absolute: true,

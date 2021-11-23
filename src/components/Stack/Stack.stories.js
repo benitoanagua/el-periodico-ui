@@ -47,7 +47,7 @@ const Template = (args) => ({
   <div>mi texto superior</div>
   <cs-stack>
     <cs-stack-item
-      v-for="({list, caption, theme}, index) in cards"  
+      v-for="({list, caption, theme}, index) in cards" :key="index"
       :breakpoint="breakpoint"
       :caption="caption"
     >

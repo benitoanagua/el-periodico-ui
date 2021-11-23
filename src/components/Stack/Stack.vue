@@ -1,33 +1,35 @@
 <template>
-  <div class="mx-3 md:mx-0" :style="{ height: 660 + 'px' }">
+  <div class="mx-3 md:mx-0" :style="{ height: heightContainer + 'px' }">
     <slot />
   </div>
 </template>
 
 <script>
-import { provide, ref, watchEffect, nextTick } from "vue";
+import { ref, provide, watchEffect } from "vue";
 
 export default {
   name: "CsStack",
   setup() {
     const items = ref([]);
-    const height = ref(0);
+    const sizes = ref([]);
+    const heightContainer = ref(0);
 
-    const getHeight = async () => {
-      await nextTick();
-      for (var value of items.value) {
-        console.log(value.proxy.$el.querySelector("div").offsetHeight);
-      }
+    const setHeight = () => {
+      heightContainer.value = Math.max(...sizes.value);
     };
 
     watchEffect(() => {
-      getHeight();
+      setHeight();
     });
 
     provide("itemsState", {
       items,
-      height,
+      sizes,
     });
+
+    return {
+      heightContainer,
+    };
   },
 };
 </script>

@@ -25,16 +25,19 @@ export default {
   },
   setup(props) {
     props = reactive(props);
-    const displayDesktop = ref(props.showDesktop);
-    const displayMobile = ref(props.showMobile);
+    const desktopDisplay = ref(props.showDesktop);
+    const mobileDisplay = ref(props.showMobile);
+    const slideWidth = ref(0);
 
     provide("slidesState", {
-      displayDesktop,
-      displayMobile,
+      desktopDisplay,
+      mobileDisplay,
+      slideWidth,
     });
 
     return {
       classCarouselSlides: computed(() => ({
+        "overflow-hidden": true,
         [`grid grid-cols-${props.showMobile} gap-6`]: true,
         [`${props.breakpoint}:grid-cols-${props.showDesktop}`]: true,
       })),

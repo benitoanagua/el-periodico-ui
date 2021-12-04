@@ -1,17 +1,20 @@
 <template>
-  <div :class="classCarouselItem">
+  <div :class="classCarouselItem" ref="container">
     <slot />
   </div>
 </template>
 
 <script>
 import {
+  ref,
   reactive,
   computed,
   inject,
   watchEffect,
+  watch,
   getCurrentInstance,
 } from "vue";
+import { gsap } from "gsap";
 
 export default {
   name: "CsCarouselSlideItem",
@@ -24,28 +27,52 @@ export default {
   setup(props) {
     props = reactive(props);
 
+    const container = ref(null);
     const instance = getCurrentInstance();
-    const { slides, items } = inject("carouselState", {
+    const { slides, items, direction } = inject("carouselState", {
       slides: [],
       items: [],
     });
-    const { displayDesktop, displayMobile } = inject("slidesState");
+    const { desktopDisplay, mobileDisplay, slideWidth } = inject("slidesState");
 
     const index = computed(() =>
       slides.value.findIndex((target) => target.uid === instance.uid)
     );
     const lower = computed(() =>
-      displayDesktop.value < displayMobile.value
-        ? displayDesktop.value
-        : displayMobile.value
+      desktopDisplay.value < mobileDisplay.value
+        ? desktopDisplay.value
+        : mobileDisplay.value
     );
     const upper = computed(() =>
-      displayDesktop.value > displayMobile.value
-        ? displayDesktop.value
-        : displayMobile.value
+      desktopDisplay.value > mobileDisplay.value
+        ? desktopDisplay.value
+        : mobileDisplay.value
     );
     const range = computed(
       () => index.value + 1 > lower.value && index.value < upper.value
+    );
+
+    watch(
+      [() => index.value, () => container.value],
+      (
+        [currentIndex, currentContainer],
+        [previousIndex, previousContainer]
+      ) => {
+        if (previousContainer !== null && previousIndex !== -1) {
+          if (currentContainer.offsetWidth > slideWidth.value)
+            slideWidth.value = previousContainer.offsetWidth;
+
+          let tween = gsap.fromTo(
+            container.value,
+            { x: slideWidth.value * direction.value },
+            {
+              x: 0,
+              duration: 2,
+              ease: "expo",
+            }
+          );
+        }
+      }
     );
 
     watchEffect(() => {
@@ -58,12 +85,13 @@ export default {
     });
 
     return {
+      container,
       classCarouselItem: computed(() => ({
         hidden: index.value + 1 > upper.value,
         [`hidden ${props.breakpoint}:block`]:
-          range.value && displayDesktop.value > displayMobile.value,
+          range.value && desktopDisplay.value > mobileDisplay.value,
         [`block ${props.breakpoint}:hidden`]:
-          range.value && displayMobile.value > displayDesktop.value,
+          range.value && mobileDisplay.value > desktopDisplay.value,
         [`order-${index.value + 1}`]: true,
       })),
     };

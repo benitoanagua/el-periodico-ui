@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-3 md:mx-0" :style="{ height: heightContainer + 'px' }">
+  <div class="mx-3 md:mx-0" :style="{ height: blockHeight + 'px' }">
     <slot />
   </div>
 </template>
@@ -11,11 +11,11 @@ export default {
   name: "CsStack",
   setup() {
     const items = ref([]);
-    const sizes = ref([]);
-    const heightContainer = ref(0);
+    const itemsHeight = ref([]);
+    const blockHeight = ref(0);
 
     const setHeight = () => {
-      heightContainer.value = Math.max(...sizes.value);
+      blockHeight.value = Math.max(...itemsHeight.value);
     };
 
     watchEffect(() => {
@@ -24,11 +24,11 @@ export default {
 
     provide("itemsState", {
       items,
-      sizes,
+      itemsHeight,
     });
 
     return {
-      heightContainer,
+      blockHeight,
     };
   },
 };

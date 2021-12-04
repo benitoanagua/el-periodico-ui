@@ -1,11 +1,11 @@
 export const colors = [
-  { bg: "bg-red-light", text: "text-red-dark" },
-  { bg: "bg-yellow-light", text: "text-yellow-dark" },
-  { bg: "bg-green-light", text: "text-green-dark" },
-  { bg: "bg-blue-light", text: "text-blue-dark" },
-  { bg: "bg-indigo-light", text: "text-indigo-dark" },
-  { bg: "bg-purple-light", text: "text-purple-dark" },
-  { bg: "bg-pink-light", text: "text-pink-dark" },
+  { bg: "bg-red-300", text: "text-red-700" },
+  { bg: "bg-yellow-300", text: "text-yellow-700" },
+  { bg: "bg-green-300", text: "text-green-700" },
+  { bg: "bg-cyan-300", text: "text-cyan-700" },
+  { bg: "bg-blue-300", text: "text-blue-700" },
+  { bg: "bg-purple-300", text: "text-purple-700" },
+  { bg: "bg-pink-300", text: "text-pink-700" },
 ];
 
 export const scale = [

@@ -30,9 +30,11 @@ export default {
 
     const slides = ref([]);
     const items = ref([]);
+    const direction = ref(1);
     provide("carouselState", {
       slides,
       items,
+      direction,
     });
 
     return {

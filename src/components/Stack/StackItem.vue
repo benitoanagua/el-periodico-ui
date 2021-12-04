@@ -26,11 +26,13 @@ import {
   computed,
   inject,
   watchEffect,
+  watch,
   getCurrentInstance,
   onMounted,
   onUnmounted,
 } from "vue";
 import CsButton from "@/components/Button/Button.vue";
+import { gsap } from "gsap";
 
 export default {
   name: "CsStackItem",
@@ -53,14 +55,17 @@ export default {
     const container = ref(null);
 
     const instance = getCurrentInstance();
-    const { items, sizes } = inject("itemsState", { items: [], sizes: [] });
+    const { items, itemsHeight } = inject("itemsState", {
+      items: [],
+      itemsHeight: [],
+    });
     const index = computed(() =>
       items.value.findIndex((target) => target.uid === instance.uid)
     );
 
     const sendFront = () => {
       items.value.splice(index.value, 1);
-      items.value.splice(0, 1, instance);
+      items.value.unshift(instance);
     };
 
     const observeMutations = (targetNode, callback) => {
@@ -73,12 +78,31 @@ export default {
     let observer = null;
     onMounted(() => {
       observer = observeMutations(container.value, () => {
-        sizes.value[index.value] =
+        itemsHeight.value[index.value] =
           container.value.offsetHeight +
           32 * (items.value.length - (index.value + 1));
       });
     });
     onUnmounted(() => observer?.disconnect());
+
+    watch(
+      () => index.value,
+      (current, previous) => {
+        if (previous !== -1) {
+          let sideRotation = (current + 1) % 2 === 0 ? 1 : -1;
+          let tween = gsap.fromTo(
+            container.value,
+            { y: items.value.length * 8, rotation: sideRotation * 2 },
+            {
+              y: 0,
+              rotation: 0,
+              duration: items.value.length - (index.value + 1) + 1,
+              ease: "expo",
+            }
+          );
+        }
+      }
+    );
 
     watchEffect(() => {
       if (index.value === -1) {

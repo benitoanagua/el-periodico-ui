@@ -29,6 +29,7 @@
     "@vitejs/plugin-vue": "^1.9.4",
     "autoprefixer": "^10.3.7",
     "babel-loader": "^8.2.3",
+    "chromatic": "^6.2.0",
     "postcss": "^8.3.9",
     "storybook-builder-vite": "^0.1.11",
     "tailwindcss": "^2.2.17",

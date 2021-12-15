@@ -98,7 +98,7 @@ export const Default = Template.bind({});
 Default.args = {
   breakpoint: "md",
   audio: "https://whsh4u-panel.com/proxy/gddupgij?mp=/stream",
-  title: "90.1 FM",
-  tagline: "CORREO DEL SUR - RADIO",
+  title: "99.9 FM",
+  tagline: "EL PERIÓDICO - RADIO",
   ctaIcons: "Escúchanos en:",
 };

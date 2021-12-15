@@ -3,6 +3,6 @@ import { create } from "@storybook/theming";
 export default create({
   base: "light",
   brandTitle: "UI Library Components",
-  brandUrl: "http://correodelsur.com/",
+  brandUrl: "#",
   brandImage: "../src/assets/logo.svg",
 });

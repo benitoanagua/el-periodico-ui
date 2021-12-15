@@ -65,7 +65,7 @@ const Template = (args) => ({
     const news = ref([]);
     const postsService = ref(new PostsService());
     postsService.value.getAll().then((data) => (news.value = data));
-    return { ...args , news };
+    return { ...args, news };
   },
   template: `
     <cs-section
@@ -180,6 +180,6 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  date: "Sucre, jueves 16 de septiembre del 2021",
+  date: "Tarija, jueves 16 de septiembre del 2021",
   items: menu,
 };

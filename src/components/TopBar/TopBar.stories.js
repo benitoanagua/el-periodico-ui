@@ -87,5 +87,5 @@ export const Default = Template.bind({});
 Default.args = {
   backgroundColor: "bg-neutral-50",
   breakpoint: "sm",
-  date: "Sucre, jueves 16 de septiembre del 2021",
+  date: "Tarija, jueves 16 de septiembre del 2021",
 };

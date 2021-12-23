@@ -1,21 +1,21 @@
 <template>
-  <div class="flex content-center">
-    <img alt="Vue logo" class="max-w-xs" src="./assets/logo.svg" />
-  </div>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
 </template>
 
-<script setup>
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md
+<script>
+// import HelloWorld from "./components/HelloWorld.vue";
+
+export default {
+  name: "App",
+  // components: {
+  //   HelloWorld,
+  // },
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  @apply font-sans text-center text-neutral-700 mt-16 antialiased grayscale;
 }
 </style>

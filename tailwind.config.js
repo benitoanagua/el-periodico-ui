@@ -1,10 +1,15 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Blinker", ...defaultTheme.fontFamily.sans],
+        serif: ["Caladea", ...defaultTheme.fontFamily.serif],
+      },
       width: {
         "1/7": "14.2857143%",
         "2/7": "28.5714286%",
@@ -156,11 +161,6 @@ module.exports = {
         orange: "#FF8A00",
         garnet: "#8F2208",
       },
-    },
-    fontFamily: {
-      serif: ["Caladea", "serif"],
-      sans: ["Blinker", "sans-serif"],
-      mono: ["PT Mono", "monospace"],
     },
     fontSize: {
       xs: ["0.75rem", "155%"],

@@ -28,7 +28,7 @@ import { reactive, computed } from "vue";
 export default {
   name: "CsLogo",
   props: {
-    with: {
+    width: {
       type: String,
       default: null,
     },
@@ -47,7 +47,7 @@ export default {
       logoClass: computed(() => ({
         "fill-current": true,
         [`${props.fill}`]: props.fill != null,
-        [`${props.with}`]: props.with != null,
+        [`${props.width}`]: props.with != null,
         [`${props.height}`]: props.height != null,
       })),
       kakiClass: computed(() => ({

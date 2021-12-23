@@ -1,4 +1,4 @@
-# vue-tailwindcss-starter-kit
+# El Periódico UI
 
 ## Project setup
 

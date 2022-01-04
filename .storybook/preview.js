@@ -1,4 +1,3 @@
-import "tailwindcss/tailwind.css";
 import "../src/main.css";
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 
